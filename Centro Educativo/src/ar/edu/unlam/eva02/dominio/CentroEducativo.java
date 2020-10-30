@@ -3,6 +3,7 @@ package ar.edu.unlam.eva02.dominio;
 import java.util.HashSet;
 import java.util.Iterator;
 
+
 public class CentroEducativo {
 
 	private final Double valorMatricula = 2500.00;
@@ -40,7 +41,96 @@ public class CentroEducativo {
 		return alumnos.add(alumnoAAgregar);
 
 	}
+	public Integer cuentoAlumnosEnStaff() {
+		return alumnos.size();
+	}
+	
+	
+	//Cuanto Cantidad DE CURSOS en la QUE ESta INscripto alumno
+	public Integer cantidadDeCursosQueEstaAnotadoAlumno(Alumno alumno1) {
+		Integer contador = 0;
+		for(Curso i: cursosFree) {
+			if(i.getAlumnosInscriptos().contains(alumno1)) {
+				contador++;
+			}
+		}
+		return contador;
+	}
 
+	
+	//Asigna Alumno a Curso FREE...SI ALumno Esta Agregado
+	public Boolean asignarAlumnoACursoFree(Integer dni, Integer IdCurso){
+		Boolean asigno = false;
+			for(Alumno e : alumnos){
+				if(e.getDni().equals(dni)&& e.getPremium().equals(true)) {
+					for(Curso i: cursosFree) {
+						if(i.getId().equals(IdCurso)) {
+							i.getAlumnosInscriptos().add(e);
+						
+							asigno = true;
+							break;
+						}
+					}
+				}else if(e.getDni().equals(dni)&& e.getPremium().equals(false) && cantidadDeCursosQueEstaAnotadoAlumno(e)<3) {
+					for(Curso i: cursosFree) {
+						if(i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso()<i.getCupo() ) {
+							i.getAlumnosInscriptos().add(e);
+						}
+					}
+				}
+				else{
+					asigno =  false;
+				}
+			}
+			return asigno;
+	
+	}
+	
+	//ASIGNO Docente Principal A CURSOS FREE
+	public Boolean asignarProfesorACurso(Integer dni, Integer IdCurso){
+		Boolean asigno = false;
+		for(Docente e : docentes){
+			if(e.getDni().equals(dni)){
+				for(Curso i: cursosFree){
+					if(i.getId().equals(IdCurso)){
+						i.setDocentePrincipal(e);
+						asigno =  true;
+					}
+				}
+			}
+			else{
+				asigno =  false;
+			}
+		}
+		return asigno;
+	}
+	//ASIGNO DOCENTE SECUNDARIO A CURSOSFREE
+	
+	public Boolean asignarDocenteSecundarioACurso(Integer dni, Integer IdCurso){
+		Boolean asigno = false;
+		for(Docente e : docentes){
+			if(e.getDni().equals(dni)){
+				for(Curso i: cursosFree){
+					if(i.getId().equals(IdCurso)){
+						i.setDocenteSecundario(e);
+						asigno =  true;
+					}
+				}
+			}
+			else{
+				asigno =  false;
+			}
+		}
+		return asigno;
+	}
+	
+	
+	
+	/*
+	
+	
+	
+	
 	public Boolean agregarAlumnoACursoPremium(Alumno alumnoAAgregar, Curso cursoSeleccionado) {
 		Boolean sePudoAgregar = false;
 		if (alumnoAAgregar.getPremium() == true) {
@@ -69,5 +159,5 @@ public class CentroEducativo {
 		}
 	return sePudoAgregar;
 	}
-
+*/
 }

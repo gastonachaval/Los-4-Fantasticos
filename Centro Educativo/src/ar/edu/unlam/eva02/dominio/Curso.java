@@ -4,7 +4,8 @@ import java.util.HashSet;
 
 public class Curso {
 	
-	private static Integer contadorId=0;
+	
+	
 	private Integer id;
 	private String nombre;
 	private Integer cupo;
@@ -12,9 +13,9 @@ public class Curso {
 	private Docente docenteSecundario;
 	private HashSet<Alumno> alumnosInscriptos;
 
-	public Curso(String nombre, Integer cupo, Docente docentePrincipal) {
-		contadorId++;
-		this.id=contadorId;
+	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Integer id) {
+		
+		this.id = id;
 		this.nombre = nombre;
 		this.cupo = cupo;
 		this.docentePrincipal = docentePrincipal;
@@ -23,15 +24,18 @@ public class Curso {
 
 	}
 
-	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Docente docenteSecundario) {
-		contadorId++;
-		this.id=contadorId;
+	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Docente docenteSecundario, Integer id) {
+		this.id= id;
 		this.nombre = nombre;
 		this.cupo = cupo;
 		this.docentePrincipal = docentePrincipal;
 		this.docenteSecundario = docenteSecundario;
 		this.alumnosInscriptos=new HashSet<Alumno>();
 
+	}
+	//Contador DE ALUMNOS EN CURSO
+	public Integer contadorDeAlumnoEnCurso() {
+		return alumnosInscriptos.size();
 	}
 
 	@Override
@@ -62,5 +66,56 @@ public class Curso {
 	public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
 		return alumnosInscriptos.add(alumnoAAgregar);
 	}
+	
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getCupo() {
+		return cupo;
+	}
+
+	public void setCupo(Integer cupo) {
+		this.cupo = cupo;
+	}
+
+	public Docente getDocentePrincipal() {
+		return docentePrincipal;
+	}
+
+	public void setDocentePrincipal(Docente docentePrincipal) {
+		this.docentePrincipal = docentePrincipal;
+	}
+
+	public Docente getDocenteSecundario() {
+		return docenteSecundario;
+	}
+
+	public void setDocenteSecundario(Docente docenteSecundario) {
+		this.docenteSecundario = docenteSecundario;
+	}
+
+	public HashSet<Alumno> getAlumnosInscriptos() {
+		return alumnosInscriptos;
+	}
+
+	public void setAlumnosInscriptos(HashSet<Alumno> alumnosInscriptos) {
+		this.alumnosInscriptos = alumnosInscriptos;
+	}
+
 	
 }
