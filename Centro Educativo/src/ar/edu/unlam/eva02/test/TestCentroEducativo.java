@@ -86,7 +86,7 @@ public class TestCentroEducativo {
 		 los4Fantasticos.asignarAlumnoACursoFree(36919350, 998);
 		 los4Fantasticos.asignarAlumnoACursoFree(36919350, 999);
 		 Integer ve= 3;
-		 Integer vo = los4Fantasticos.cantidadDeCursosQueEstaAnotadoAlumno(gaston);
+		 Integer vo = gaston.getCursosTomados();
 		 assertEquals(ve,vo);
 	 }
 	 @Test

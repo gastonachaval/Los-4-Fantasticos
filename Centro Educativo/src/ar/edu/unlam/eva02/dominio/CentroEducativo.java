@@ -47,6 +47,7 @@ public class CentroEducativo {
 	
 	
 	//Cuanto Cantidad DE CURSOS en la QUE ESta INscripto alumno
+	/*
 	public Integer cantidadDeCursosQueEstaAnotadoAlumno(Alumno alumno1) {
 		Integer contador = 0;
 		for(Curso i: cursosFree) {
@@ -56,7 +57,7 @@ public class CentroEducativo {
 		}
 		return contador;
 	}
-
+*/
 	
 	//Asigna Alumno a Curso FREE...SI ALumno Esta Agregado
 	public Boolean asignarAlumnoACursoFree(Integer dni, Integer IdCurso){
@@ -66,15 +67,16 @@ public class CentroEducativo {
 					for(Curso i: cursosFree) {
 						if(i.getId().equals(IdCurso)) {
 							i.getAlumnosInscriptos().add(e);
-						
+							e.sumarUnCurso();
 							asigno = true;
 							break;
 						}
 					}
-				}else if(e.getDni().equals(dni)&& e.getPremium().equals(false) && cantidadDeCursosQueEstaAnotadoAlumno(e)<3) {
+				}else if(e.getDni().equals(dni)&& e.getPremium().equals(false) && e.getCursosTomados()<3  /*&&cantidadDeCursosQueEstaAnotadoAlumno(e)<3*/) {
 					for(Curso i: cursosFree) {
 						if(i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso()<i.getCupo() ) {
 							i.getAlumnosInscriptos().add(e);
+							e.sumarUnCurso();
 						}
 					}
 				}
