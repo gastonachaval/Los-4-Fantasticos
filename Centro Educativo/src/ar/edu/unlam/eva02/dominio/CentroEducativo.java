@@ -1,12 +1,12 @@
 package ar.edu.unlam.eva02.dominio;
 
 import java.util.HashSet;
-import java.util.Iterator;
+
 
 
 public class CentroEducativo {
 
-	private final Double valorMatricula = 2500.00;
+	private final double valorMatricula = 2500.00;
 	private Double caja;
 	private String nombre;
 	private HashSet<Docente> docentes;
@@ -45,6 +45,14 @@ public class CentroEducativo {
 		return alumnos.size();
 	}
 	
+	public Integer cuentoDocentesEnStaff(){
+		return docentes.size();
+	}
+	public Integer cuentoCantidadDeAlumnosEnTotal(){
+		
+		return cursosFree.size()+ cursosPremium.size();
+		
+	}
 	
 	//Cuanto Cantidad DE CURSOS en la QUE ESta INscripto alumno
 	/*
@@ -58,12 +66,65 @@ public class CentroEducativo {
 		return contador;
 	}
 */
+//Cuento Cantidad De Alumnos Con Premium
+	public Integer totalDeAlumnosConPremium(){
+		Integer contador = 0;
+		for(Alumno e: alumnos){
+			if(e.getPremium().equals(true)){
+				contador++;
+			}
+		}
+		return contador;
+	}
+//Cuento Cantidad De AlumnoFree
+	public Integer totalDeAlumnosFree(){
+		Integer contador = 0;
+		for(Alumno e: alumnos){
+			if(e.getPremium().equals(false)){
+				contador++;
+			}
+		}
+		return contador;
+	}
 	
-	//Asigna Alumno a Curso FREE...SI ALumno Esta Agregado
+//Cuento Total De Dinero Ganado Con alumnos Premium
+	public Double totalDeDineroGanadoPorAlumnosPremium(){
+		caja = totalDeAlumnosConPremium()* valorMatricula; 
+		return caja;
+		
+	}
+	
+	
+	
+	
+	//Asgigna Alumno a CursosPremium
+	
+	public Boolean asignaAlumnoACursoPremium(Integer dni, Integer IdCurso){
+		Boolean asigno = false;
+		for(Alumno e: alumnos){
+			if(e.getDni().equals(dni) && e.getPremium().equals(true)){
+				for(Curso i: cursosPremium){
+					if(i.getId().equals(IdCurso)){
+						i.agregarAlumnoACurso(e);
+						e.sumarUnCurso();
+						asigno = true;
+						}
+						
+					}
+				}
+			}
+		return asigno;
+		}
+	
+		
+	
+	
+	
+	//Asigna Alumno a Curso Free si esta en Staff
 	public Boolean asignarAlumnoACursoFree(Integer dni, Integer IdCurso){
 		Boolean asigno = false;
 			for(Alumno e : alumnos){
-				if(e.getDni().equals(dni)&& e.getPremium().equals(true)) {
+				if(e.getDni().equals(dni) && e.getPremium().equals(true)) {
 					for(Curso i: cursosFree) {
 						if(i.getId().equals(IdCurso)) {
 							i.getAlumnosInscriptos().add(e);
@@ -77,18 +138,18 @@ public class CentroEducativo {
 						if(i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso()<i.getCupo() ) {
 							i.getAlumnosInscriptos().add(e);
 							e.sumarUnCurso();
+							asigno=true;
+							break;
 						}
 					}
 				}
-				else{
-					asigno =  false;
-				}
+				
 			}
 			return asigno;
 	
 	}
 	
-	//ASIGNO Docente Principal A CURSOS FREE
+	//Asigno Docente Principal  a CursosFree si esta en Staff
 	public Boolean asignarProfesorACurso(Integer dni, Integer IdCurso){
 		Boolean asigno = false;
 		for(Docente e : docentes){
@@ -106,7 +167,7 @@ public class CentroEducativo {
 		}
 		return asigno;
 	}
-	//ASIGNO DOCENTE SECUNDARIO A CURSOSFREE
+	//Asigno Docente Secundario a CursosFree si esta en Staff
 	
 	public Boolean asignarDocenteSecundarioACurso(Integer dni, Integer IdCurso){
 		Boolean asigno = false;
@@ -124,6 +185,54 @@ public class CentroEducativo {
 			}
 		}
 		return asigno;
+	}
+
+	public Double getCaja() {
+		return caja;
+	}
+
+	public void setCaja(Double caja) {
+		this.caja = caja;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public HashSet<Docente> getDocentes() {
+		return docentes;
+	}
+
+	public void setDocentes(HashSet<Docente> docentes) {
+		this.docentes = docentes;
+	}
+
+	public HashSet<Alumno> getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(HashSet<Alumno> alumnos) {
+		this.alumnos = alumnos;
+	}
+
+	public HashSet<Curso> getCursosFree() {
+		return cursosFree;
+	}
+
+	public void setCursosFree(HashSet<Curso> cursosFree) {
+		this.cursosFree = cursosFree;
+	}
+
+	public HashSet<Curso> getCursosPremium() {
+		return cursosPremium;
+	}
+
+	public void setCursosPremium(HashSet<Curso> cursosPremium) {
+		this.cursosPremium = cursosPremium;
 	}
 	
 	
@@ -162,4 +271,10 @@ public class CentroEducativo {
 	return sePudoAgregar;
 	}
 */
+	
+	
+	
+	
+	
+	
 }

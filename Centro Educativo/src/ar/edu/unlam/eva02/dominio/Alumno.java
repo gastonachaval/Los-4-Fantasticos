@@ -2,8 +2,8 @@ package ar.edu.unlam.eva02.dominio;
 
 public class Alumno extends Persona {
 
-	private Boolean premium;
-	private Integer cursosTomados;
+	private boolean premium;
+	private int cursosTomados;
 
 	public Alumno(Integer dni, String nombresYApellidos) {
 		super(dni, nombresYApellidos);

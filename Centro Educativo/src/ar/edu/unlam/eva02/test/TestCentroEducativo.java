@@ -8,7 +8,7 @@ import ar.edu.unlam.eva02.dominio.Alumno;
 import ar.edu.unlam.eva02.dominio.CentroEducativo;
 import ar.edu.unlam.eva02.dominio.Curso;
 import ar.edu.unlam.eva02.dominio.Docente;
-import ar.edu.unlam.eva02.dominio.Persona;
+
 
 public class TestCentroEducativo {
 
@@ -36,6 +36,39 @@ public class TestCentroEducativo {
 		 Integer ve=1;
 		 Integer vo = poo.contadorDeAlumnoEnCurso();
 		 assertEquals(ve, vo);
+		 
+	 }
+	 
+	 @Test
+	 public void testQueAlumnoPremiumSePuedaAnotarEnUnCursoFreeLLeno(){
+		 CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		 Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval");
+		 Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello");
+		 Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies");
+		 Docente andy = new Docente(20647451, "Andres Borgeat");
+		 Curso poo = new Curso("Programacion Orientada A Objetos", 2, andy, 998);
+		 
+		 los4Fantasticos.agregarCursoFree(poo);
+		 los4Fantasticos.agregarDocenteAlStaff(andy);
+		 los4Fantasticos.asignarProfesorACurso(20647451, 998);
+		 
+		
+		 los4Fantasticos.agregarNuevoAlumno(gaston);
+		 los4Fantasticos.agregarNuevoAlumno(emanuelArguello);
+		 los4Fantasticos.agregarNuevoAlumno(maximilianoDavies);
+		 
+		
+		 assertTrue(los4Fantasticos.asignarAlumnoACursoFree(38469132,998));
+		 assertTrue(los4Fantasticos.asignarAlumnoACursoFree(41497315,998));
+		 gaston.cambiarEstadoPremium();
+		 assertTrue( los4Fantasticos.asignarAlumnoACursoFree(36919350, 998));
+		 
+	 }
+	 @Test
+	 public void testQueVerificoQueCambiaEstadoPremiumEnAlumno(){
+		 Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval");
+		 gaston.cambiarEstadoPremium();
+		 assertTrue (gaston.getPremium());
 		 
 	 }
 	 
@@ -90,7 +123,7 @@ public class TestCentroEducativo {
 		 assertEquals(ve,vo);
 	 }
 	 @Test
-	 public void testQueAlumnoFreeNoSePuedeAnotarEnElCuertoCurso() {
+	 public void testQueAlumnoFreeNoSePuedeAnotarEnEl4toCurso() {
 		 CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		 Docente andy = new Docente(20647451, "Andres Borgeat");
 		 
