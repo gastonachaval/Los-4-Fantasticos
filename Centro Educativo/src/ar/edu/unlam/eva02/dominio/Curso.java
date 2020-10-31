@@ -65,6 +65,10 @@ public class Curso {
 	public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
 		return alumnosInscriptos.add(alumnoAAgregar);
 	}
+	
+	public Boolean eliminarAlumnoDelCurso(Alumno alumnoAEliminar) {
+		return alumnosInscriptos.remove(alumnoAEliminar);
+	}
 
 	public Integer getId() {
 		return id;
@@ -113,5 +117,7 @@ public class Curso {
 	public void setAlumnosInscriptos(HashSet<Alumno> alumnosInscriptos) {
 		this.alumnosInscriptos = alumnosInscriptos;
 	}
+	
+	
 
 }

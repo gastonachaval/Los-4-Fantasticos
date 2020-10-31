@@ -248,5 +248,20 @@ public class CentroEducativo {
 	 * curso.agregarAlumnoACurso(alumnoAAgregar); alumnoAAgregar.sumarUnCurso();
 	 * return sePudoAgregar = true; } } } return sePudoAgregar; }
 	 */
-
+// Elimino un alumno de un Curso
+//
+//		public Boolean eliminarAlumnoDeUnCurso(Integer dni, Integer idCurso) {
+//			Boolean elimino = false;
+//			for (Alumno a : alumnos) {
+//				if (a.getDni().equals(dni)) {
+//					for (Curso e : cursosFree) {
+//						if (e.getId().equals(idCurso)) {
+//							e.eliminarAlumnoDelCurso(a);
+//							elimino = true;
+//						}
+//					}
+//				}
+//			}
+//			return elimino;
+//		}
 }

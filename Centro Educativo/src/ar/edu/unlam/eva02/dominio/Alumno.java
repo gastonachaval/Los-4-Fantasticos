@@ -5,8 +5,8 @@ public class Alumno extends Persona {
 	private boolean premium;
 	private int cursosTomados;
 
-	public Alumno(Integer dni, String nombresYApellidos) {
-		super(dni, nombresYApellidos);
+	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono) {
+		super(dni, nombresYApellidos, nroTelefono);
 		premium = false;
 		this.cursosTomados = 0;
 	}
@@ -29,6 +29,5 @@ public class Alumno extends Persona {
 
 	public void sumarUnCurso() {
 		cursosTomados++;
-
 	}
 }
