@@ -8,7 +8,7 @@ public class Alumno extends Persona {
 	public Alumno(Integer dni, String nombresYApellidos) {
 		super(dni, nombresYApellidos);
 		premium = false;
-		this.cursosTomados=0;
+		this.cursosTomados = 0;
 	}
 
 	public Boolean getPremium() {
@@ -16,11 +16,10 @@ public class Alumno extends Persona {
 	}
 
 	public void cambiarEstadoPremium() {
-		if (premium==false) {
-			premium=true;
-		}
-		else {
-			premium=false;
+		if (premium == false) {
+			premium = true;
+		} else {
+			premium = false;
 		}
 	}
 
@@ -30,7 +29,6 @@ public class Alumno extends Persona {
 
 	public void sumarUnCurso() {
 		cursosTomados++;
-		
-	}
 
+	}
 }

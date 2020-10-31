@@ -44,4 +44,11 @@ public abstract class Persona {
 		return nombresYApellidos;
 	}
 
+	public void setDni(Integer dni) {
+		this.dni = dni;
+	}
+
+	public void setNombresYApellidos(String nombresYApellidos) {
+		this.nombresYApellidos = nombresYApellidos;
+	}
 }

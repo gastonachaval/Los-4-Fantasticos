@@ -3,9 +3,7 @@ package ar.edu.unlam.eva02.dominio;
 import java.util.HashSet;
 
 public class Curso {
-	
-	
-	
+
 	private Integer id;
 	private String nombre;
 	private Integer cupo;
@@ -14,26 +12,27 @@ public class Curso {
 	private HashSet<Alumno> alumnosInscriptos;
 
 	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Integer id) {
-		
+
 		this.id = id;
 		this.nombre = nombre;
 		this.cupo = cupo;
 		this.docentePrincipal = docentePrincipal;
 		this.docenteSecundario = null;
-		this.alumnosInscriptos=new HashSet<Alumno>();
+		this.alumnosInscriptos = new HashSet<Alumno>();
 
 	}
 
 	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Docente docenteSecundario, Integer id) {
-		this.id= id;
+		this.id = id;
 		this.nombre = nombre;
 		this.cupo = cupo;
 		this.docentePrincipal = docentePrincipal;
 		this.docenteSecundario = docenteSecundario;
-		this.alumnosInscriptos=new HashSet<Alumno>();
+		this.alumnosInscriptos = new HashSet<Alumno>();
 
 	}
-	//Contador DE ALUMNOS EN CURSO
+
+	// Contador DE ALUMNOS EN CURSO
 	public Integer contadorDeAlumnoEnCurso() {
 		return alumnosInscriptos.size();
 	}
@@ -62,12 +61,10 @@ public class Curso {
 			return false;
 		return true;
 	}
-	
+
 	public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
 		return alumnosInscriptos.add(alumnoAAgregar);
 	}
-	
-
 
 	public Integer getId() {
 		return id;
@@ -117,5 +114,4 @@ public class Curso {
 		this.alumnosInscriptos = alumnosInscriptos;
 	}
 
-	
 }
