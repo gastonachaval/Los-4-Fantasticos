@@ -223,6 +223,10 @@ public class CentroEducativo {
 		this.cursosPremium = cursosPremium;
 	}
 
+	public Boolean eliminarAlumnoDelStaff(Alumno alumnoAEliminar) {
+		return alumnos.remove(alumnoAEliminar);
+	}
+
 	/*
 	 * 
 	 * 
