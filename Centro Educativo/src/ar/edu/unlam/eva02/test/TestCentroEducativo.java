@@ -11,6 +11,7 @@ import ar.edu.unlam.eva02.dominio.Docente;
 
 public class TestCentroEducativo {
 
+
 	@Test
 	public void testQueSePuedaCrearUnCentroConCursosAlumnosYProfesores() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
@@ -31,6 +32,23 @@ public class TestCentroEducativo {
 		Integer ve = 1;
 		Integer vo = los4Fantasticos.cuentoAlumnosEnStaff();
 		assertEquals(ve, vo);
+	}
+
+	@Test
+	public void testQueUnAlumnoDelStaffSeInscribaAUnCurso() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Alumno max = new Alumno(43309952, "Davies Max");
+		Docente andi = new Docente(28004443, "Andres Borgeat");
+		Curso poo = new Curso("POO", 3, andi, 001);
+
+		los4Fantasticos.agregarCursoPremium(poo);
+		los4Fantasticos.agregarNuevoAlumno(max);
+		max.cambiarEstadoPremium();
+
+		los4Fantasticos.asignaAlumnoACursoPremium(max.getDni(), poo.getId());
+
+		Integer ve = 1;
+		assertEquals(ve, poo.contadorDeAlumnoEnCurso());
 	}
 
 	@Test
