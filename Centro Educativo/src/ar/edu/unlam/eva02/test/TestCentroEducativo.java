@@ -1,6 +1,8 @@
 package ar.edu.unlam.eva02.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -9,9 +11,9 @@ import ar.edu.unlam.eva02.dominio.CentroEducativo;
 import ar.edu.unlam.eva02.dominio.Curso;
 import ar.edu.unlam.eva02.dominio.Docente;
 
-public class TestCentroEducativo {
+public class TestCentroEducativo{
 
-	@Test
+@Test
 	public void testQueSePuedaCrearUnCentroConCursosAlumnosYProfesores() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Alumno maxi = new Alumno(43309952, "Davies Maximiliano", 112233455);
@@ -244,6 +246,27 @@ public class TestCentroEducativo {
 		Integer ve=1;
 		assertEquals(ve, poo.contadorDeAlumnoEnCurso());
 
+	}
+	
+	@Test
+	public void testQueCambiaNumeroDeTelefonoAlumno() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452);
+		los4Fantasticos.agregarNuevoAlumno(max);
+		los4Fantasticos.cambioNumeroTelefonoDeAlumno(43309952, 111111111);
+		Integer ve= 111111111;
+		Integer vo= max.getNroTelefono();
+		assertEquals(ve,vo);
+	}
+	@Test
+	public void testQueCambiaNumeroDeTelefonoDocente() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
+		los4Fantasticos.agregarDocenteAlStaff(andi);
+		los4Fantasticos.cambioNumeroTelefonoDeDocente(234675232, 111111111);
+		Integer ve= 111111111;
+		Integer vo= andi.getNroTelefono();
+		assertEquals(ve,vo);
 	}
 
 	/*

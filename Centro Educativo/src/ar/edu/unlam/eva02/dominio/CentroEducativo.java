@@ -61,6 +61,32 @@ public class CentroEducativo {
 	 * if(i.getAlumnosInscriptos().contains(alumno1)) { contador++; } } return
 	 * contador; }
 	 */
+	
+	//Cambio Numero de Telefono Docente
+	public Boolean cambioNumeroTelefonoDeDocente(Integer dni, Integer telefonoNuevo) {
+		Boolean cambio = false;
+		for(Docente e: docentes) {
+			if(e.getDni().equals(dni)){
+				e.setNroTelefono(telefonoNuevo);
+				cambio = true;
+			}
+		}
+		return cambio;	
+	}
+	
+	//Cambio Numero de Telefono de Alumno
+	
+	public Boolean cambioNumeroTelefonoDeAlumno(Integer dni, Integer telefonoNuevo) {
+		Boolean cambio = false;
+		for(Alumno e: alumnos) {
+			if(e.getDni().equals(dni)){
+				e.setNroTelefono(telefonoNuevo);
+				cambio = true;
+			}
+		}
+		return cambio;	
+	}
+	
 //Cuento Cantidad De Alumnos Con Premium
 	public Integer totalDeAlumnosConPremium() {
 		Integer contador = 0;
