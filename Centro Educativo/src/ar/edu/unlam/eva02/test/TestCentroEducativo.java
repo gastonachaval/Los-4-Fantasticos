@@ -1,6 +1,8 @@
 package ar.edu.unlam.eva02.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -9,9 +11,9 @@ import ar.edu.unlam.eva02.dominio.CentroEducativo;
 import ar.edu.unlam.eva02.dominio.Curso;
 import ar.edu.unlam.eva02.dominio.Docente;
 
-public class TestCentroEducativo {
+public class TestCentroEducativo{
 
-	@Test
+@Test
 	public void testQueSePuedaCrearUnCentroConCursosAlumnosYProfesores() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Alumno maxi = new Alumno(43309952, "Davies Maximiliano", 112233455);
