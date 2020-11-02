@@ -25,6 +25,40 @@ public class TestCentroEducativo{
 		assertTrue(los4Fantasticos.agregarNuevoAlumno(maxi));
 	}
 
+
+@Test
+public void testQueCuentoCantidadDeAlumnosPorCurso(){
+	
+	CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+	
+	Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452);
+	Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459);
+	Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455);
+	Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201);
+	
+	Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
+	Curso poo = new Curso("Programacion Orientada A Objetos", 5, andy, 998);
+
+	los4Fantasticos.agregarCursoFree(poo);
+	los4Fantasticos.agregarDocenteAlStaff(andy);
+	los4Fantasticos.asignarProfesorACurso(20647451, 998);
+	
+	los4Fantasticos.agregarNuevoAlumno(gaston1);
+	los4Fantasticos.agregarNuevoAlumno(gaston);
+	los4Fantasticos.agregarNuevoAlumno(emanuelArguello);
+	los4Fantasticos.agregarNuevoAlumno(maximilianoDavies);
+	
+	gaston1.cambiarEstadoPremium();
+	gaston.cambiarEstadoPremium();
+	
+	los4Fantasticos.asignarAlumnoACursoFree(36919350, 998);
+	los4Fantasticos.asignarAlumnoACursoFree(38469132, 998);
+	los4Fantasticos.asignarAlumnoACursoFree(41497315, 998);
+	los4Fantasticos.asignarAlumnoACursoFree(33022376, 998);
+	Integer vo= poo.contadorDeAlumnoEnCurso();
+	Integer ve= 4;
+	assertEquals(ve,vo);
+}
 	@Test
 	public void queAlumnoPuedaInscribirseAlStaff() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
