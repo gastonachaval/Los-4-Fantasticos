@@ -27,7 +27,7 @@ public class TestCentroEducativo{
 
 
 @Test
-public void testQueCuentoCantidadDeAlumnosPorCurso(){
+public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium(){
 	
 	CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 	

@@ -2,6 +2,12 @@ package ar.edu.unlam.eva02.dominio;
 
 public abstract class Persona {
 
+	@Override
+	public String toString() {
+		return "Persona DNI:  " + dni + ", Nombre y Apellido= " + nombresYApellidos + ", TELEFONO: " + nroTelefono
+				+ " ";
+	}
+
 	private Integer dni;
 	private String nombresYApellidos;
 	private Integer nroTelefono;

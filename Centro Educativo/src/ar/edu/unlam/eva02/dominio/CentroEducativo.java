@@ -1,5 +1,7 @@
 package ar.edu.unlam.eva02.dominio;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 
 public class CentroEducativo {
@@ -115,6 +117,9 @@ public class CentroEducativo {
 
 	}
 
+	
+	
+	
 	// Asgigna Alumno a CursosPremium
 
 	public Boolean asignaAlumnoACursoPremium(Integer dni, Integer IdCurso) {
