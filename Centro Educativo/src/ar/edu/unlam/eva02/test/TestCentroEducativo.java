@@ -245,6 +245,27 @@ public class TestCentroEducativo {
 		assertEquals(ve, poo.contadorDeAlumnoEnCurso());
 
 	}
+	
+	@Test
+	public void testQueCambiaNumeroDeTelefonoAlumno() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452);
+		los4Fantasticos.agregarNuevoAlumno(max);
+		los4Fantasticos.cambioNumeroTelefonoDeAlumno(43309952, 111111111);
+		Integer ve= 111111111;
+		Integer vo= max.getNroTelefono();
+		assertEquals(ve,vo);
+	}
+	@Test
+	public void testQueCambiaNumeroDeTelefonoDocente() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
+		los4Fantasticos.agregarDocenteAlStaff(andi);
+		los4Fantasticos.cambioNumeroTelefonoDeDocente(234675232, 111111111);
+		Integer ve= 111111111;
+		Integer vo= andi.getNroTelefono();
+		assertEquals(ve,vo);
+	}
 
 	/*
 	 * @Test public void queUnAlumnoFreeNoPuedaTomarUnCursoPremium() {
