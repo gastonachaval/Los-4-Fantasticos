@@ -1,14 +1,18 @@
 package ar.edu.unlam.eva02.dominio;
 
+import java.util.HashSet;
+
 public class Alumno extends Persona {
 
 	private boolean premium;
-	private int cursosTomados;
+	private int cantidadDeCursosTomados;
+	private HashSet<Curso> cursosFinalizados;
 
 	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono) {
 		super(dni, nombresYApellidos, nroTelefono);
 		premium = false;
-		this.cursosTomados = 0;
+		this.cantidadDeCursosTomados = 0;
+		this.cursosFinalizados = new HashSet<Curso>();
 	}
 
 	public Boolean getPremium() {
@@ -23,11 +27,19 @@ public class Alumno extends Persona {
 		}
 	}
 
-	public Integer getCursosTomados() {
-		return cursosTomados;
+	public Integer getCantidadDeCursosTomados() {
+		return cantidadDeCursosTomados;
 	}
 
 	public void sumarUnCurso() {
-		cursosTomados++;
+		cantidadDeCursosTomados++;
+	}
+	
+	public void restarUnCurso() {
+		cantidadDeCursosTomados--;
+	}
+
+	public HashSet<Curso> getCursosFinalizados() {
+		return cursosFinalizados;
 	}
 }

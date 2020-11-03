@@ -11,9 +11,9 @@ import ar.edu.unlam.eva02.dominio.CentroEducativo;
 import ar.edu.unlam.eva02.dominio.Curso;
 import ar.edu.unlam.eva02.dominio.Docente;
 
-public class TestCentroEducativo{
+public class TestCentroEducativo {
 
-@Test
+	@Test
 	public void testQueSePuedaCrearUnCentroConCursosAlumnosYProfesores() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Alumno maxi = new Alumno(43309952, "Davies Maximiliano", 112233455);
@@ -25,40 +25,40 @@ public class TestCentroEducativo{
 		assertTrue(los4Fantasticos.agregarNuevoAlumno(maxi));
 	}
 
+	@Test
+	public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium() {
 
-@Test
-public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium(){
-	
-	CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-	
-	Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452);
-	Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459);
-	Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455);
-	Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201);
-	
-	Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
-	Curso poo = new Curso("Programacion Orientada A Objetos", 5, andy, 998);
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 
-	los4Fantasticos.agregarCursoFree(poo);
-	los4Fantasticos.agregarDocenteAlStaff(andy);
-	los4Fantasticos.asignarProfesorACurso(20647451, 998);
-	
-	los4Fantasticos.agregarNuevoAlumno(gaston1);
-	los4Fantasticos.agregarNuevoAlumno(gaston);
-	los4Fantasticos.agregarNuevoAlumno(emanuelArguello);
-	los4Fantasticos.agregarNuevoAlumno(maximilianoDavies);
-	
-	gaston1.cambiarEstadoPremium();
-	gaston.cambiarEstadoPremium();
-	
-	los4Fantasticos.asignarAlumnoACursoFree(36919350, 998);
-	los4Fantasticos.asignarAlumnoACursoFree(38469132, 998);
-	los4Fantasticos.asignarAlumnoACursoFree(41497315, 998);
-	los4Fantasticos.asignarAlumnoACursoFree(33022376, 998);
-	Integer vo= poo.contadorDeAlumnoEnCurso();
-	Integer ve= 4;
-	assertEquals(ve,vo);
-}
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452);
+		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459);
+		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455);
+		Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201);
+
+		Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
+		Curso poo = new Curso("Programacion Orientada A Objetos", 5, andy, 998);
+
+		los4Fantasticos.agregarCursoFree(poo);
+		los4Fantasticos.agregarDocenteAlStaff(andy);
+		los4Fantasticos.asignarProfesorACurso(20647451, 998);
+
+		los4Fantasticos.agregarNuevoAlumno(gaston1);
+		los4Fantasticos.agregarNuevoAlumno(gaston);
+		los4Fantasticos.agregarNuevoAlumno(emanuelArguello);
+		los4Fantasticos.agregarNuevoAlumno(maximilianoDavies);
+
+		gaston1.cambiarEstadoPremium();
+		gaston.cambiarEstadoPremium();
+
+		los4Fantasticos.asignarAlumnoACursoFree(36919350, 998);
+		los4Fantasticos.asignarAlumnoACursoFree(38469132, 998);
+		los4Fantasticos.asignarAlumnoACursoFree(41497315, 998);
+		los4Fantasticos.asignarAlumnoACursoFree(33022376, 998);
+		Integer vo = poo.contadorDeAlumnoEnCurso();
+		Integer ve = 4;
+		assertEquals(ve, vo);
+	}
+
 	@Test
 	public void queAlumnoPuedaInscribirseAlStaff() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
@@ -181,7 +181,7 @@ public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium(){
 		los4Fantasticos.asignarAlumnoACursoFree(36919350, 998);
 		los4Fantasticos.asignarAlumnoACursoFree(36919350, 999);
 		Integer ve = 3;
-		Integer vo = gaston.getCursosTomados();
+		Integer vo = gaston.getCantidadDeCursosTomados();
 		assertEquals(ve, vo);
 	}
 
@@ -274,33 +274,84 @@ public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium(){
 
 		los4Fantasticos.asignarAlumnoACursoFree(43309952, 001);
 		los4Fantasticos.asignarAlumnoACursoFree(38469132, 001);
-		
+
 		poo.eliminarAlumnoDelCurso(max);
-		
-		Integer ve=1;
+
+		Integer ve = 1;
 		assertEquals(ve, poo.contadorDeAlumnoEnCurso());
 
 	}
-	
+
 	@Test
 	public void testQueCambiaNumeroDeTelefonoAlumno() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452);
 		los4Fantasticos.agregarNuevoAlumno(max);
 		los4Fantasticos.cambioNumeroTelefonoDeAlumno(43309952, 111111111);
-		Integer ve= 111111111;
-		Integer vo= max.getNroTelefono();
-		assertEquals(ve,vo);
+		Integer ve = 111111111;
+		Integer vo = max.getNroTelefono();
+		assertEquals(ve, vo);
 	}
+
 	@Test
 	public void testQueCambiaNumeroDeTelefonoDocente() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
 		los4Fantasticos.agregarDocenteAlStaff(andi);
 		los4Fantasticos.cambioNumeroTelefonoDeDocente(234675232, 111111111);
-		Integer ve= 111111111;
-		Integer vo= andi.getNroTelefono();
-		assertEquals(ve,vo);
+		Integer ve = 111111111;
+		Integer vo = andi.getNroTelefono();
+		assertEquals(ve, vo);
+	}
+	
+	//SI USAMOS ASIGNACION MANUAL DE ID, HABRIA QUE TENER EL SIGUIENTE TEST
+	//EL TEST DA BIEN, PERO TENER EN CUENTA QUE UN DOCENTE PUEDE DICTAR UN CURSO
+	//SIN SER PARTE DEL STAFF (DEBERIAMOS VALIDARLO EN LA INSTANCIACION DE CURSO ?)
+	
+	@Test
+	public void queNoSePuedaAgregarUnCursoConElMismoId() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
+		//los4Fantasticos.agregarDocenteAlStaff(andi);
+		Curso java= new Curso("Programacion Java", 6, andi, 1);
+		Curso java2= new Curso("Programacion Java2", 6, andi, 1);
+		los4Fantasticos.agregarCursoFree(java);
+		
+		assertFalse(los4Fantasticos.agregarCursoFree(java2));
+
+	}
+	
+	@Test
+	public void queSePuedaCalificarUnAlumnoEnUnCursoFree() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
+		los4Fantasticos.agregarDocenteAlStaff(andi);
+		Curso java= new Curso("Programacion Java", 6, andi, 1);
+		los4Fantasticos.agregarCursoFree(java);
+		Alumno gaston= new Alumno (36919350, "Gaston Rodriguez Achaval",1522516656);
+		los4Fantasticos.agregarNuevoAlumno(gaston);
+		los4Fantasticos.asignarAlumnoACursoFree(gaston.getDni(), java.getId());
+		
+		
+		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java));
+
+	}
+	
+	@Test
+	public void queSePuedaCalificarUnAlumnoEnUnCursoPremium() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
+		los4Fantasticos.agregarDocenteAlStaff(andi);
+		Curso java= new Curso("Programacion Java", 6, andi, 1);
+		los4Fantasticos.agregarCursoPremium(java);
+		Alumno gaston= new Alumno (36919350, "Gaston Rodriguez Achaval",1522516656);	
+		los4Fantasticos.agregarNuevoAlumno(gaston);
+		gaston.cambiarEstadoPremium();
+		los4Fantasticos.asignaAlumnoACursoPremium(gaston.getDni(), java.getId());
+		
+		
+		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoPremium(gaston, java));
+
 	}
 
 	/*
@@ -344,7 +395,7 @@ public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium(){
 	 * CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 	 * Docente juanma = new Docente(30645987, "Juan Manuel Monteagudo"); Curso
 	 * arduino = new Curso("Mini Curso Arduino", 3, juanma); Alumno gastonAchaval =
-	 * new Alumno(36919350, "Gaston Rodriguez Achaval"); Alumno gastonSantos = new
+	 * ; Alumno gastonSantos = new
 	 * Alumno(34564978, "Gaston Santos"); Alumno emanuelArguello = new
 	 * Alumno(38469132, "Emanuel Arguello"); Alumno maximilianoDavies = new
 	 * Alumno(41497315, "Maximiliano Davies");

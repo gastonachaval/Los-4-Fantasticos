@@ -1,8 +1,7 @@
 package ar.edu.unlam.eva02.dominio;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class CentroEducativo {
 
@@ -117,10 +116,7 @@ public class CentroEducativo {
 
 	}
 
-	
-	
-	
-	// Asgigna Alumno a CursosPremium
+	// Asigna Alumno a CursosPremium
 
 	public Boolean asignaAlumnoACursoPremium(Integer dni, Integer IdCurso) {
 		Boolean asigno = false;
@@ -153,7 +149,7 @@ public class CentroEducativo {
 					}
 				}
 			} else if (e.getDni().equals(dni) && e.getPremium().equals(false)
-					&& e.getCursosTomados() < 3 /* &&cantidadDeCursosQueEstaAnotadoAlumno(e)<3 */) {
+					&& e.getCantidadDeCursosTomados() < 3 /* &&cantidadDeCursosQueEstaAnotadoAlumno(e)<3 */) {
 				for (Curso i : cursosFree) {
 					if (i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso() < i.getCupo()) {
 						i.getAlumnosInscriptos().add(e);
@@ -203,6 +199,48 @@ public class CentroEducativo {
 			}
 		}
 		return asigno;
+	}
+
+	public Boolean aprobarAlumnoEnCursoFree(Alumno alumnoACalificar, Curso cursoACalificar) {
+		Boolean sePudoCalificar = false;
+		for (Iterator<Curso> iterator = cursosFree.iterator(); iterator.hasNext();) {
+			Curso curso = (Curso) iterator.next();
+			if (curso.equals(cursoACalificar)) {
+				HashSet<Alumno> alumnosInscriptosEnElCursoACalificar = curso.getAlumnosInscriptos();
+				for (Iterator<Alumno> iterator2 = alumnosInscriptosEnElCursoACalificar.iterator(); iterator2
+						.hasNext();) {
+					Alumno alumno = (Alumno) iterator2.next();
+					if (alumnoACalificar.equals(alumno)) {
+						alumno.getCursosFinalizados().add(cursoACalificar);
+						alumno.restarUnCurso();
+						sePudoCalificar = true;
+						break;
+					}
+				}
+			}
+		}
+		return sePudoCalificar;
+	}
+	
+	public Boolean aprobarAlumnoEnCursoPremium(Alumno alumnoACalificar, Curso cursoACalificar) {
+		Boolean sePudoCalificar = false;
+		for (Iterator<Curso> iterator = cursosPremium.iterator(); iterator.hasNext();) {
+			Curso curso = (Curso) iterator.next();
+			if (curso.equals(cursoACalificar)) {
+				HashSet<Alumno> alumnosInscriptosEnElCursoACalificar = curso.getAlumnosInscriptos();
+				for (Iterator<Alumno> iterator2 = alumnosInscriptosEnElCursoACalificar.iterator(); iterator2
+						.hasNext();) {
+					Alumno alumno = (Alumno) iterator2.next();
+					if (alumnoACalificar.equals(alumno)) {
+						alumno.getCursosFinalizados().add(cursoACalificar);
+						alumno.restarUnCurso();
+						sePudoCalificar = true;
+						break;
+					}
+				}
+			}
+		}
+		return sePudoCalificar;
 	}
 
 	public Double getCaja() {
