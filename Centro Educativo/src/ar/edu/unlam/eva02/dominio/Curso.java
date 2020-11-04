@@ -118,9 +118,5 @@ public class Curso {
 		this.alumnosInscriptos = alumnosInscriptos;
 	}
 	
-	public Boolean getPremium() {
-		return premium;
-	}
-	
 
 }

@@ -325,18 +325,15 @@ public class TestCentroEducativo {
 	public void queSePuedaCalificarUnAlumnoEnUnCursoFree() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
-		Docente jj = new Docente(2346711, "jj", 1122334572);
 		los4Fantasticos.agregarDocenteAlStaff(andi);
 		Curso java= new Curso("Programacion Java", 6, andi, 1);
 		los4Fantasticos.agregarCursoFree(java);
 		Alumno gaston= new Alumno (36919350, "Gaston Rodriguez Achaval",1522516656);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
 		los4Fantasticos.asignarAlumnoACursoFree(gaston.getDni(), java.getId());
-		/*los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java,jj);
-		Curso java2= new Curso("Programacion Java2", 6, andi, 1);*/
 		
 		
-		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java,jj));
+		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java,andi));
 
 	}
 	
