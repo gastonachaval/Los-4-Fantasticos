@@ -10,7 +10,7 @@ public class Curso {
 	private Docente docentePrincipal;
 	private Docente docenteSecundario;
 	private HashSet<Alumno> alumnosInscriptos;
-
+	
 	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Integer id) {
 
 		this.id = id;
@@ -118,6 +118,9 @@ public class Curso {
 		this.alumnosInscriptos = alumnosInscriptos;
 	}
 	
+	public Boolean getPremium() {
+		return premium;
+	}
 	
 
 }

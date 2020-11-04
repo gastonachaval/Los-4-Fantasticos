@@ -76,14 +76,14 @@ public class TestCentroEducativo {
 		Docente andi = new Docente(28004443, "Andres Borgeat", 112233457);
 		Curso poo = new Curso("POO", 3, andi, 001);
 
-		los4Fantasticos.agregarCursoPremium(poo);
+		/*los4Fantasticos.agregarCursoPremium(poo);
 		los4Fantasticos.agregarNuevoAlumno(max);
 		max.cambiarEstadoPremium();
 
 		los4Fantasticos.asignaAlumnoACursoPremium(max.getDni(), poo.getId());
 
-		Integer ve = 1;
-		assertEquals(ve, poo.contadorDeAlumnoEnCurso());
+		Integer ve = 1;*/
+		assertTrue(los4Fantasticos.agregarCursoPremium(poo));
 	}
 
 	@Test
@@ -325,15 +325,18 @@ public class TestCentroEducativo {
 	public void queSePuedaCalificarUnAlumnoEnUnCursoFree() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
+		Docente jj = new Docente(2346711, "jj", 1122334572);
 		los4Fantasticos.agregarDocenteAlStaff(andi);
 		Curso java= new Curso("Programacion Java", 6, andi, 1);
 		los4Fantasticos.agregarCursoFree(java);
 		Alumno gaston= new Alumno (36919350, "Gaston Rodriguez Achaval",1522516656);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
 		los4Fantasticos.asignarAlumnoACursoFree(gaston.getDni(), java.getId());
+		/*los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java,jj);
+		Curso java2= new Curso("Programacion Java2", 6, andi, 1);*/
 		
 		
-		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java));
+		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoFree(gaston, java,jj));
 
 	}
 	
@@ -350,7 +353,7 @@ public class TestCentroEducativo {
 		los4Fantasticos.asignaAlumnoACursoPremium(gaston.getDni(), java.getId());
 		
 		
-		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoPremium(gaston, java));
+		assertTrue(los4Fantasticos.aprobarAlumnoEnCursoPremium(gaston, java, andi));
 
 	}
 

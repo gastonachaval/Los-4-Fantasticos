@@ -9,4 +9,21 @@ public class Docente extends Persona {
 		super(dni, nombresYApellidos, nroTelefono);
 	}
 
+	public Boolean aprobar(Alumno alumnoACalificar, Curso cursoACalificar, HashSet<Curso> curso) {
+		Boolean sePudoAprobar = false;
+		for (Iterator<Curso> iterator = curso.iterator(); iterator.hasNext();) {
+			Curso cursito = (Curso) iterator.next();
+			if (cursito.equals(cursoACalificar)) {
+				cursito.getAlumnosInscriptos().contains(alumnoACalificar);
+				alumnoACalificar.getCursosFinalizados().add(cursoACalificar);
+				alumnoACalificar.restarUnCurso();
+				sePudoAprobar = true;
+				return sePudoAprobar;
+			}
+
+		}
+		return sePudoAprobar;
+
+	}
+
 }

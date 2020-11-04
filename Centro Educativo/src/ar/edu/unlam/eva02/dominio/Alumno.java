@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 public class Alumno extends Persona {
 
-	private boolean premium;
-	private int cantidadDeCursosTomados;
+	private Boolean premium;
+	private Integer cantidadDeCursosTomados;
 	private HashSet<Curso> cursosFinalizados;
 
 	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono) {
