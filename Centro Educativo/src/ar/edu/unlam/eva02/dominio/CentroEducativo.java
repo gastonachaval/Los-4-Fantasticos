@@ -10,29 +10,31 @@ public class CentroEducativo {
 	private String nombre;
 	private HashSet<Docente> docentes;
 	private HashSet<Alumno> alumnos;
-	private HashSet<Curso> cursosFree;
-	private HashSet<Curso> cursosPremium;
+	//private HashSet<Curso> cursosFree;
+	private HashSet<Curso> cursos;
 
 	public CentroEducativo(String nombre) {
 		this.caja = 0.0;
 		this.nombre = nombre;
 		this.docentes = new HashSet<Docente>();
 		this.alumnos = new HashSet<Alumno>();
-		this.cursosFree = new HashSet<Curso>();
-		this.cursosPremium = new HashSet<Curso>();
+		//this.cursosFree = new HashSet<Curso>();
+		this.cursos = new HashSet<Curso>();
 	}
 
+	
+	
 	public Boolean agregarDocenteAlStaff(Docente docenteAAgregar) {
 		return docentes.add(docenteAAgregar);
 	}
 
-	public Boolean agregarCursoFree(Curso cursoAAgregar) {
-		return cursosFree.add(cursoAAgregar);
+	//public Boolean agregarCursoFree(Curso cursoAAgregar) {
+	//	return cursosFree.add(cursoAAgregar);
 
-	}
+	//}
 
 	public Boolean agregarCursoPremium(Curso cursoAAgregar) {
-		return cursosPremium.add(cursoAAgregar);
+		return cursos.add(cursoAAgregar);
 
 	}
 
@@ -41,19 +43,20 @@ public class CentroEducativo {
 
 	}
 
+	//Cuento Cantidad de Alumnos en Staff
 	public Integer cuentoAlumnosEnStaff() {
 		return alumnos.size();
 	}
-
+//Cuento Cantidad de Docentes en Staff
 	public Integer cuentoDocentesEnStaff() {
 		return docentes.size();
 	}
+//Cuento totalidad Estudiantes En Cursos
+	//public Integer cuentoCantidadDeAlumnosEnTotal() {
 
-	public Integer cuentoCantidadDeAlumnosEnTotal() {
+	//	return cursosFree.size() + cursos.size();
 
-		return cursosFree.size() + cursosPremium.size();
-
-	}
+	//}
 
 	// Cuanto Cantidad DE CURSOS en la QUE ESta INscripto alumno
 	/*
@@ -110,19 +113,37 @@ public class CentroEducativo {
 	}
 
 //Cuento Total De Dinero Ganado Con alumnos Premium
-	public Double totalDeDineroGanadoPorAlumnosPremium() {
+	public Double totalDeDineroGanadoPorAlumnosConSubPremium() {
 		caja = totalDeAlumnosConPremium() * valorMatricula;
 		return caja;
 
 	}
-
+	//TOTAL DE DINERO GANADO CON CURSOS
+		public Double dineroGanadoEnCursos(){
+			Double contador= 0.0;
+			for(Curso e: cursos){
+				contador += e.cuentoCantidadDeDineroGaneEnCurso();
+			}
+			return contador;
+			
+		}
+		
+	//TOTAL DE DINERO GANADO EN TOTAL
+		public Double totalDineroGanadoEnTotal(){
+			Double total= 0.0;
+			total= totalDeDineroGanadoPorAlumnosConSubPremium()+dineroGanadoEnCursos();
+		return	total;
+			
+		}
+		
+		
 	// Asigna Alumno a CursosPremium
 
-	public Boolean asignaAlumnoACursoPremium(Integer dni, Integer IdCurso) {
+	/*public Boolean asignaAlumnoACursoPremium(Integer dni, Integer IdCurso) {
 		Boolean asigno = false;
 		for (Alumno e : alumnos) {
 			if (e.getDni().equals(dni) && e.getPremium().equals(true)) {
-				for (Curso i : cursosPremium) {
+				for (Curso i : cursos) {
 					if (i.getId().equals(IdCurso)) {
 						i.agregarAlumnoACurso(e);
 						e.sumarUnCurso();
@@ -134,26 +155,28 @@ public class CentroEducativo {
 		}
 		return asigno;
 	}
-
+*/
 	// Asigna Alumno a Curso Free si esta en Staff
-	public Boolean asignarAlumnoACursoFree(Integer dni, Integer IdCurso) {
+	
+	public Boolean asignarAlumnoACurso(Integer dni, Integer IdCurso) {
 		Boolean asigno = false;
 		for (Alumno e : alumnos) {
 			if (e.getDni().equals(dni) && e.getPremium().equals(true)) {
-				for (Curso i : cursosFree) {
-					if (i.getId().equals(IdCurso)) {
+				for (Curso i : cursos) {
+					if (i.getId().equals(IdCurso) ) {
 						i.getAlumnosInscriptos().add(e);
 						e.sumarUnCurso();
+						e.setCanditdadDeDineroGastado(e.getCanditdadDeDineroGastado()+i.getCosto());
 						asigno = true;
 						break;
 					}
 				}
-			} else if (e.getDni().equals(dni) && e.getPremium().equals(false)
-					&& e.getCantidadDeCursosTomados() < 3 /* &&cantidadDeCursosQueEstaAnotadoAlumno(e)<3 */) {
-				for (Curso i : cursosFree) {
-					if (i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso() < i.getCupo()) {
+			} else if (e.getDni().equals(dni) && e.getPremium().equals(false)&& e.getCantidadDeCursosTomados() < 3 ) {
+				for (Curso i : cursos) {
+					if (i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso() < i.getCupo() && i.getPremium().equals(false)) {
 						i.getAlumnosInscriptos().add(e);
 						e.sumarUnCurso();
+						e.setCanditdadDeDineroGastado(e.getCanditdadDeDineroGastado()+i.getCosto());
 						asigno = true;
 						break;
 					}
@@ -162,15 +185,16 @@ public class CentroEducativo {
 
 		}
 		return asigno;
-
 	}
+	
 
 	// Asigno Docente Principal a CursosFree si esta en Staff
-	public Boolean asignarProfesorACurso(Integer dni, Integer IdCurso) {
+	
+		public Boolean asignarProfesorACurso(Integer dni, Integer IdCurso) {
 		Boolean asigno = false;
 		for (Docente e : docentes) {
 			if (e.getDni().equals(dni)) {
-				for (Curso i : cursosFree) {
+				for (Curso i : cursos) {
 					if (i.getId().equals(IdCurso)) {
 						i.setDocentePrincipal(e);
 						asigno = true;
@@ -188,7 +212,7 @@ public class CentroEducativo {
 		Boolean asigno = false;
 		for (Docente e : docentes) {
 			if (e.getDni().equals(dni)) {
-				for (Curso i : cursosFree) {
+				for (Curso i : cursos) {
 					if (i.getId().equals(IdCurso)) {
 						i.setDocenteSecundario(e);
 						asigno = true;
@@ -201,19 +225,18 @@ public class CentroEducativo {
 		return asigno;
 	}
 
-	public Boolean aprobarAlumnoEnCursoPremium(Alumno alumnoACalificar, Curso cursoACalificar,
-			Docente docenteAprobador) {
+	public Boolean aprobarAlumnoEnCurso(Alumno alumnoACalificar, Curso cursoACalificar,Docente docenteAprobador) {
 		Boolean sePudoCalificar = false;
-		for (Iterator<Curso> iterator = cursosPremium.iterator(); iterator.hasNext();) {
+		for (Iterator<Curso> iterator = cursos.iterator(); iterator.hasNext();) {
 			Curso curso = (Curso) iterator.next();
 			if (curso.getDocentePrincipal().equals(docenteAprobador)) {
-				return sePudoCalificar = docenteAprobador.aprobar(alumnoACalificar, cursoACalificar, cursosPremium);
+				return sePudoCalificar = docenteAprobador.aprobar(alumnoACalificar, cursoACalificar, cursos);
 			}
 		}
 
 		return sePudoCalificar;
 	}
-
+/*
 	public Boolean aprobarAlumnoEnCursoFree(Alumno alumnoACalificar, Curso cursoACalificar, Docente docenteAprobador) {
 		Boolean sePudoCalificar = false;
 		for (Iterator<Curso> iterator = cursosFree.iterator(); iterator.hasNext();) {
@@ -226,6 +249,7 @@ public class CentroEducativo {
 
 		return sePudoCalificar;
 	}
+	*/
 
 	public Double getCaja() {
 		return caja;
@@ -259,20 +283,20 @@ public class CentroEducativo {
 		this.alumnos = alumnos;
 	}
 
-	public HashSet<Curso> getCursosFree() {
-		return cursosFree;
+//	public HashSet<Curso> getCursosFree() {
+//		return cursosFree;
+//	}
+
+//	public void setCursosFree(HashSet<Curso> cursosFree) {
+//		this.cursosFree = cursosFree;
+//	}
+
+	public HashSet<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setCursosFree(HashSet<Curso> cursosFree) {
-		this.cursosFree = cursosFree;
-	}
-
-	public HashSet<Curso> getCursosPremium() {
-		return cursosPremium;
-	}
-
-	public void setCursosPremium(HashSet<Curso> cursosPremium) {
-		this.cursosPremium = cursosPremium;
+	public void setCursos(HashSet<Curso> cursosPremium) {
+		this.cursos = cursosPremium;
 	}
 
 	public Boolean eliminarAlumnoDelStaff(Alumno alumnoAEliminar) {
@@ -287,7 +311,7 @@ public class CentroEducativo {
 	 * public Boolean agregarAlumnoACursoPremium(Alumno alumnoAAgregar, Curso
 	 * cursoSeleccionado) { Boolean sePudoAgregar = false; if
 	 * (alumnoAAgregar.getPremium() == true) { for (Iterator iterator =
-	 * cursosPremium.iterator(); iterator.hasNext();) { Curso curso = (Curso)
+	 * cursos.iterator(); iterator.hasNext();) { Curso curso = (Curso)
 	 * iterator.next(); if (curso.equals(cursoSeleccionado)) {
 	 * curso.agregarAlumnoACurso(alumnoAAgregar); return sePudoAgregar = true; } } }
 	 * return sePudoAgregar; }
@@ -295,7 +319,7 @@ public class CentroEducativo {
 	 * public Boolean agregarAlumnoACursoFree(Alumno alumnoAAgregar, Curso
 	 * cursoSeleccionado) { Boolean sePudoAgregar = false; if
 	 * (alumnoAAgregar.getCursosTomados()<=3) { for (Iterator iterator =
-	 * cursosPremium.iterator(); iterator.hasNext();) { Curso curso = (Curso)
+	 * cursos.iterator(); iterator.hasNext();) { Curso curso = (Curso)
 	 * iterator.next(); if (curso.equals(cursoSeleccionado)) {
 	 * curso.agregarAlumnoACurso(alumnoAAgregar); alumnoAAgregar.sumarUnCurso();
 	 * return sePudoAgregar = true; } } } return sePudoAgregar; }

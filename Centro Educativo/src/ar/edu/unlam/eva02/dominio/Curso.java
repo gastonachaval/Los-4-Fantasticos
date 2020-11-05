@@ -3,7 +3,8 @@ package ar.edu.unlam.eva02.dominio;
 import java.util.HashSet;
 
 public class Curso {
-
+	private Double costo;
+	private Boolean premium;
 	private Integer id;
 	private String nombre;
 	private Integer cupo;
@@ -11,8 +12,9 @@ public class Curso {
 	private Docente docenteSecundario;
 	private HashSet<Alumno> alumnosInscriptos;
 	
-	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Integer id) {
-
+	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Integer id, Double costo, Boolean premium) {
+		this.costo = costo;
+		this.premium = premium;
 		this.id = id;
 		this.nombre = nombre;
 		this.cupo = cupo;
@@ -22,7 +24,9 @@ public class Curso {
 
 	}
 
-	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Docente docenteSecundario, Integer id) {
+	public Curso(String nombre, Integer cupo, Docente docentePrincipal, Docente docenteSecundario, Integer id, Double costo, Boolean premium) {
+		this.costo = costo;
+		this.premium = premium;
 		this.id = id;
 		this.nombre = nombre;
 		this.cupo = cupo;
@@ -31,12 +35,69 @@ public class Curso {
 		this.alumnosInscriptos = new HashSet<Alumno>();
 
 	}
+	
+	//Cuento Cantidad DE dinero Gane EN Este Curso
+	public Double cuentoCantidadDeDineroGaneEnCurso(){
+		
+		Double contador = 0.0;
+		contador = costo*alumnosInscriptos.size();
+		return contador;
+	}
+	
+	//CUENTO CANTIDAD DE ALUMNOS FREE HAY EN EL CURSO
+	public Integer cuentoCantidadDeAlumnosFreeEnCurso(){
+		Integer sumador = 0;
+		for(Alumno e: alumnosInscriptos){
+			if(e.getPremium()==false){
+				sumador++;
+			}
+		}
+		return sumador;
+	}
+	//CUENTO LA CANTIDAD DE ALUMNOS PREMIUM HAY EN CURSO
+	public Integer cuentoCantidadDeAlumosPremiumEnCurso(){
+		Integer contador = 0;
+		for(Alumno e: alumnosInscriptos){
+			if(e.getPremium().equals(true)){
+				contador++;
+			}
+		}
+		return contador;
+	}
+	
+	
+	public Double getCosto() {
+		return costo;
+	}
 
-	// Contador DE ALUMNOS EN CURSO
+	public void setCosto(Double costo) {
+		this.costo = costo;
+	}
+
+	public Boolean getPremium() {
+		return premium;
+	}
+
+	public void setPremium(Boolean premium) {
+		this.premium = premium;
+	}
+
+	// CUENTO LA TOTALIDAD DE ALUMNOS QUE HAY EN CURSO
 	public Integer contadorDeAlumnoEnCurso() {
 		return alumnosInscriptos.size();
 	}
 
+	//Agrego Alumno a Curso
+	public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
+		return alumnosInscriptos.add(alumnoAAgregar);
+	}
+	
+	//Elimino un alumno del curso
+	public Boolean eliminarAlumnoDelCurso(Alumno alumnoAEliminar) {
+		return alumnosInscriptos.remove(alumnoAEliminar);
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,13 +123,7 @@ public class Curso {
 		return true;
 	}
 
-	public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
-		return alumnosInscriptos.add(alumnoAAgregar);
-	}
-	
-	public Boolean eliminarAlumnoDelCurso(Alumno alumnoAEliminar) {
-		return alumnosInscriptos.remove(alumnoAEliminar);
-	}
+
 
 	public Integer getId() {
 		return id;

@@ -6,13 +6,23 @@ public class Alumno extends Persona {
 
 	private Boolean premium;
 	private Integer cantidadDeCursosTomados;
+	private Double canditdadDeDineroGastado;
 	private HashSet<Curso> cursosFinalizados;
 
-	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono) {
+	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono, Boolean premium) {
 		super(dni, nombresYApellidos, nroTelefono);
-		premium = false;
+		this.premium = premium;
 		this.cantidadDeCursosTomados = 0;
 		this.cursosFinalizados = new HashSet<Curso>();
+		canditdadDeDineroGastado=0.0;
+	}
+
+	public Double getCanditdadDeDineroGastado() {
+		return canditdadDeDineroGastado;
+	}
+
+	public void setCanditdadDeDineroGastado(Double canditdadDeDineroGastado) {
+		this.canditdadDeDineroGastado = canditdadDeDineroGastado;
 	}
 
 	public Boolean getPremium() {
