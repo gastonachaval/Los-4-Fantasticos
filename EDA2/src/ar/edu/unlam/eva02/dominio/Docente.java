@@ -1,7 +1,6 @@
 package ar.edu.unlam.eva02.dominio;
 
-import java.util.HashSet;
-import java.util.Iterator;
+
 
 public class Docente extends Persona {
 

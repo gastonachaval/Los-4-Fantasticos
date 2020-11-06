@@ -24,13 +24,12 @@ public class CentroEducativo {
 	public Boolean agregarDocenteAlStaff(Docente docenteAAgregar) {
 		return docentes.add(docenteAAgregar);
 	}
-
+	
 	public Boolean agregarCurso(Curso cursoAAgregar, Docente docenteQueDictaElCurso) {
 		if (docentes.contains(docenteQueDictaElCurso) == true) {
 			return cursos.add(cursoAAgregar);
 		}
 		return false;
-
 	}
 
 	public Boolean agregarPersonaAlAlumnado(Alumno alumnoAAgregar) {
@@ -46,7 +45,7 @@ public class CentroEducativo {
 		return docentes.size();
 	}
 
-	// Cambio Numero de Telefono Docente
+	
 	public Boolean cambioNumeroTelefonoDeDocente(Integer dni, Integer telefonoNuevo) {
 		Boolean cambio = false;
 		for (Docente e : docentes) {
@@ -58,7 +57,7 @@ public class CentroEducativo {
 		return cambio;
 	}
 
-	// Cambio Numero de Telefono de Alumno
+	
 
 	public Boolean cambioNumeroTelefonoDeAlumno(Integer dni, Integer telefonoNuevo) {
 		Boolean cambio = false;
@@ -71,7 +70,6 @@ public class CentroEducativo {
 		return cambio;
 	}
 
-//Cuento Cantidad De Alumnos Con Premium
 	public Integer totalDeAlumnosConPremium() {
 		Integer contador = 0;
 		for (Alumno e : alumnado) {
@@ -82,7 +80,6 @@ public class CentroEducativo {
 		return contador;
 	}
 
-//Cuento Cantidad De AlumnoFree
 	public Integer totalDeAlumnosFree() {
 		Integer contador = 0;
 		for (Alumno e : alumnado) {
@@ -93,24 +90,9 @@ public class CentroEducativo {
 		return contador;
 	}
 
-	// Asigna Alumno a CursosPremium
 
-	public Boolean asignaAlumnoACursoPremium(Integer dni, Integer IdCurso) {
-		Boolean asigno = false;
-		for (Alumno e : alumnado) {
-			if (e.getDni().equals(dni) && e.getPremium().equals(true)) {
-				for (Curso i : cursos) {
-					if (i.getId().equals(IdCurso)) {
-						i.agregarAlumnoACurso(e);
-						e.sumarUnCurso();
-						asigno = true;
-					}
 
-				}
-			}
-		}
-		return asigno;
-	}
+
 
 	public Boolean asignarAlumnoACurso(Integer idCurso, Integer dniAlumno) {
 
