@@ -1,0 +1,58 @@
+pasar metodo setPremium a cursoEducativo
+
+--------------------------
+
+JUNIT
+
+metodo de la clase centro educativo
+
+public Boolean agregarCurso(){
+
+boolean sePudoAgregar=false;
+
+valida si el docente esta dentro del staff=true
+
+llamada al constructor de curso
+
+instancia un curso con el docente previamente valido
+
+------------------------------
+
+billetera dinamica
+
+que se vaya contabilizando el dinero en tiempo real de ambas billeteras
+
+
+--------------------------------
+
+comentar todo
+
+-------------------------
+
+
+recupere el curso y chequee si es premium 
+
+
+---------------------
+
+cantidad curso tomados <4 a menos que sea premium el alumno
+cupo curso que no este lleno a menos que se premium el alumno
+que el curso no sea premium a menos que sea premium el alumno
+
+-------------------
+modificar asignacionalumno a curso para que reciba por parametro alumno y curso y haga el add directamente.
+
+--------------------------
+
+finalizar curso
+
+alumnos inscriptos en el curso agregar certificacion en atributo cursos finalizados
+cantidad de cursos tomados en alumno -1
+remover curso
+
+
+
+
+
+
+
