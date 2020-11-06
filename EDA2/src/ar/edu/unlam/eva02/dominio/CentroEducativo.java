@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class CentroEducativo {
 
-	private final double VALOR_MEMBRESIA_PREMIUM = 2500.00;
+	private final Double VALOR_MEMBRESIA_PREMIUM = 2500.0;
 	private final Integer CANTIDAD_MAXIMA_DE_CURSOS_QUE_PUEDE_TOMAR_UN_ALUMNO_FREE = 3;
 	private Double caja;
 	private String nombre;
@@ -106,6 +106,7 @@ public class CentroEducativo {
 					Curso curso = (Curso) iterator.next();
 					if (curso.getId().equals(idCurso)) {
 						curso.agregarAlumnoACurso(alumnoAAsignar);
+						alumnoAAsignar.sumarUnCurso();
 						return true;
 					}
 				}
@@ -117,6 +118,7 @@ public class CentroEducativo {
 					Curso curso = (Curso) iterator.next();
 					if (curso.getId().equals(idCurso)) {
 						curso.agregarAlumnoACurso(alumnoAAsignar);
+						alumnoAAsignar.sumarUnCurso();
 						return true;
 					}
 				}
@@ -129,7 +131,16 @@ public class CentroEducativo {
 
 	}
 
-	private Curso buscarCurso(Integer idCurso) {
+	private Curso buscarCurso(Integer idCurso){
+		for(Curso e: cursos){
+			if(e.getId().equals(idCurso)){
+				return e;
+			}
+		}
+		return null;
+	}
+	
+	/*private Curso buscarCurso(Integer idCurso) {
 		for (Iterator<Curso> iterator = cursos.iterator(); iterator.hasNext();) {
 			Curso curso = (Curso) iterator.next();
 			if (curso.getId().equals(idCurso)) {
@@ -138,7 +149,7 @@ public class CentroEducativo {
 		}
 		return null;
 	}
-
+*/
 	private Alumno buscarAlumnoEnAlumnado(Integer dniABuscarEnElAlumnado) {
 		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
 			Alumno alumno = (Alumno) iterator.next();
