@@ -212,8 +212,30 @@ public class Tests {
 		
 	}
 	
-	
-	
+	public void testQueFinalizaUnCurso(){
+		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
+		Docente andy = new Docente (26654556, "Andreas", 1101454722);
+		centro1.agregarDocenteAlStaff(andy);
+		Curso poo = new Curso("Prog", 1, false,andy,001);
+		Curso basica1 = new Curso("Basica1", 2, false, andy, 002);
+		Curso ingles = new Curso("Ingles", 2, false, andy, 003);
+		Curso mate = new Curso("Matematicas", 2, false, andy, 004);
+		centro1.agregarCurso(poo, andy);
+		centro1.agregarCurso(mate, andy);
+		centro1.agregarCurso(ingles, andy);
+		centro1.agregarCurso(basica1, andy);
+		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 8000.0);
+		centro1.agregarPersonaAlAlumnado(maxi);
+		centro1.pasarAlumnoAPremium(maxi);
+		assertTrue(centro1.asignarAlumnoACurso(basica1.getId(), maxi.getDni()));
+		assertTrue(centro1.asignarAlumnoACurso(ingles.getId(), maxi.getDni()));
+		assertTrue(centro1.asignarAlumnoACurso(mate.getId(), maxi.getDni()));
+		centro1.finalizarCurso(ingles);
+		Integer ve=2;
+		Integer vo= maxi.getCantidadDeCursosTomados();
+		assertEquals(ve,vo);
+		
+	}
 	
 
 }
