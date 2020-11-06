@@ -77,7 +77,7 @@ public class Curso {
 		return alumnosInscriptos;
 	}
 
-	// Contador DE ALUMNOS EN CURSO
+	
 	public Integer contadorDeAlumnoEnCurso() {
 		return alumnosInscriptos.size();
 	}
