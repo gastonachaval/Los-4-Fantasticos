@@ -16,7 +16,7 @@ public class CentroEducativo {
 	public CentroEducativo(String nombre) {
 		this.caja = 0.0;
 		this.nombre = nombre;
-		this.docentes = new HashSet<Docente>();
+		this.docentes = new HashSet<Docente>(); //h
 		this.alumnos = new HashSet<Alumno>();
 		this.cursosFree = new HashSet<Curso>();
 		this.cursosPremium = new HashSet<Curso>();
