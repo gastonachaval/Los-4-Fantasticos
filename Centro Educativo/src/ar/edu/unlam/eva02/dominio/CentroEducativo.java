@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class CentroEducativo {
 
-	private final double valorMatricula = 2500.00;
+	private Double valorMatricula = 2500.00;
 	private Double caja;
 	private String nombre;
 	private HashSet<Docente> docentes;
@@ -75,6 +75,22 @@ public class CentroEducativo {
 			}
 		}
 		return cambio;
+	}
+	
+	
+	//Cambio Estado de ALUMNO de Free a Premium
+	
+	
+	public Boolean cambioEstadoDeAlumnoDeFreeAPremium(Alumno alumno1) {
+		Boolean cambioEstado=false;
+		for(Alumno e: alumnos) {
+			if(e.equals(alumno1) && e.getPremium().equals(false) && e.getBilletera1().getMonto() > valorMatricula) {
+				e.setPremium(true);
+				e.getBilletera1().setMonto(e.getBilletera1().getMonto()-valorMatricula);
+				cambioEstado=true;
+			}
+		}
+		return cambioEstado;
 	}
 
 	// Cambio Numero de Telefono de Alumno
@@ -161,21 +177,24 @@ public class CentroEducativo {
 	public Boolean asignarAlumnoACurso(Integer dni, Integer IdCurso) {
 		Boolean asigno = false;
 		for (Alumno e : alumnos) {
-			if (e.getDni().equals(dni) && e.getPremium().equals(true)) {
+			if (e.getDni().equals(dni) && e.getPremium().equals(true)) { 
 				for (Curso i : cursos) {
-					if (i.getId().equals(IdCurso) ) {
+					if (i.getId().equals(IdCurso)) {
 						i.getAlumnosInscriptos().add(e);
 						e.sumarUnCurso();
 						e.setCanditdadDeDineroGastado(e.getCanditdadDeDineroGastado()+i.getCosto());
+						
 						asigno = true;
 						break;
 					}
 				}
 			} else if (e.getDni().equals(dni) && e.getPremium().equals(false)&& e.getCantidadDeCursosTomados() < 3 ) {
 				for (Curso i : cursos) {
-					if (i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso() < i.getCupo() && i.getPremium().equals(false)) {
+					if (i.getId().equals(IdCurso) && i.contadorDeAlumnoEnCurso() < i.getCupo() && i.getPremium().equals(false)/*&& e.getBilletera1().getMonto() > i.getCosto()*/) {
 						i.getAlumnosInscriptos().add(e);
 						e.sumarUnCurso();
+						e.getBilletera1().setMonto(e.getBilletera1().getMonto()-i.getCosto());
+				
 						e.setCanditdadDeDineroGastado(e.getCanditdadDeDineroGastado()+i.getCosto());
 						asigno = true;
 						break;
@@ -302,7 +321,15 @@ public class CentroEducativo {
 	public Boolean eliminarAlumnoDelStaff(Alumno alumnoAEliminar) {
 		return alumnos.remove(alumnoAEliminar);
 	}
+	public Double getValorMatricula() {
+		return valorMatricula;
+	}
 
+
+
+	public void setValorMatricula(Double valorMatricula) {
+		this.valorMatricula = valorMatricula;
+	}
 	/*
 	 * 
 	 * 

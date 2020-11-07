@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import ar.edu.unlam.eva02.dominio.Alumno;
+import ar.edu.unlam.eva02.dominio.BilleteraVirtual;
 import ar.edu.unlam.eva02.dominio.CentroEducativo;
 import ar.edu.unlam.eva02.dominio.Curso;
 import ar.edu.unlam.eva02.dominio.Docente;
@@ -16,7 +17,8 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueSePuedaCrearUnCentroConCursosAlumnosYProfesores() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno maxi = new Alumno(43309952, "Davies Maximiliano", 112233455, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		Alumno maxi = new Alumno(43309952, "Davies Maximiliano", 112233455, false,billetera1);
 		Docente andy = new Docente(7123321, "Andres Borgeat", 112233456);
 		Docente juanma = new Docente(8123321, "Juan Monteagudo", 112233457);
 		Curso java = new Curso("Java", 15, andy, juanma, 001, 50.0, false);
@@ -30,11 +32,18 @@ public class TestCentroEducativo {
 	public void testQueCuentoCantidadDeAlumnosPorCursoSeanFreeOPremium() {
 
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452, false);
-		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459, true);
-		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, false);
-		Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201, true);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+		BilleteraVirtual billetera4 = new BilleteraVirtual();
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
+		billetera4.agregarDinero(6000.0);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452, false, billetera1);
+		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459, true, billetera2);
+		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, false, billetera3);
+		Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201, true, billetera4);
 
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
 		Curso poo = new Curso("Programacion Orientada A Objetos", 5, andy, 998, 250.0, false);
@@ -63,7 +72,9 @@ public class TestCentroEducativo {
 	@Test
 	public void queAlumnoPuedaInscribirseAlStaff() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233458, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(6000.0);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233458, false, billetera1);
 		assertTrue(los4Fantasticos.agregarNuevoAlumno(gaston));
 		Integer ve = 1;
 		Integer vo = los4Fantasticos.cuentoAlumnosEnStaff();
@@ -73,7 +84,9 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueUnAlumnoDelStaffSeInscribaAUnCursoFree() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno max = new Alumno(43309952, "Davies Max", 112233455, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(4000.0);
+		Alumno max = new Alumno(43309952, "Davies Max", 112233455, false, billetera1);
 		Docente andi = new Docente(28004443, "Andres Borgeat", 112233457);
 		Curso poo = new Curso("POO", 3, andi, 001, 500.0, false);
 
@@ -82,14 +95,16 @@ public class TestCentroEducativo {
 		//max.cambiarEstadoPremium();
 
 		assertTrue(los4Fantasticos.asignarAlumnoACurso(max.getDni(), poo.getId()));
-
-		
 	}
+	
+	
 
 	@Test
 	public void testQueAlumnoNoPremiumSePuedeInscribirACursoFree() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233458, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(6000.0);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233458, false, billetera1);
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233459);
 		los4Fantasticos.agregarDocenteAlStaff(andy);
 		los4Fantasticos.asignarProfesorACurso(20647451, 02);
@@ -106,9 +121,17 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueAlumnoPremiumSePuedaAnotarEnUnCursoAunqueEsteLLeno() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452, false);
-		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459, true);
-		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, true);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+	
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
+		
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452, false, billetera1);
+		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459, true, billetera2);
+		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, true, billetera3);
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
 		Curso poo = new Curso("Programacion Orientada A Objetos", 2, andy, 998, 200.0, false);
 
@@ -129,19 +152,30 @@ public class TestCentroEducativo {
 
 	@Test
 	public void testQueVerificoQueCambiaEstadoPremiumEnAlumno() {
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233455, false);
-		gaston.cambiarEstadoPremium();
-		assertTrue(gaston.getPremium());
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(4000.0);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233455, false,billetera1);
+		los4Fantasticos.agregarNuevoAlumno(gaston);
+		assertTrue(los4Fantasticos.cambioEstadoDeAlumnoDeFreeAPremium(gaston));
+		//gaston.cambiarEstadoPremium();
+		
 
 	}
 
 	@Test
 	public void testQueAlumnoFreeNoSePuedeAnotarEnCursoFreeSiELCursoEstaLLeno() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233459, false);
-		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233452, false);
-		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+	
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233459, false, billetera1);
+		Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233452, false, billetera2);
+		Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, false, billetera3);
 
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233458);
 
@@ -165,6 +199,8 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueCuentaCantidadDeCursosQueEstaAnotadoAlumnoFree() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(6000.0);
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233452);
 		Curso poo = new Curso("Programacion Orientada A Objetos", 2, andy, 997, 20.0, false);
 		Curso basica2 = new Curso("Basica 2", 2, andy, 998, 50.0, false);
@@ -175,7 +211,7 @@ public class TestCentroEducativo {
 		los4Fantasticos.agregarCursoPremium(poo);
 		los4Fantasticos.agregarCursoPremium(basica2);
 		los4Fantasticos.agregarCursoPremium(tics);
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233451, false);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233451, false,billetera1);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
 		los4Fantasticos.asignarAlumnoACurso(36919350, 997);
 		los4Fantasticos.asignarAlumnoACurso(36919350, 998);
@@ -188,6 +224,8 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueAlumnoFreeNoSePuedeAnotarEnEl4toCurso() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(6000.0);
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
 
 		Curso ingles = new Curso("Ingles", 3, andy, 996, 20.0, false);
@@ -205,7 +243,7 @@ public class TestCentroEducativo {
 		los4Fantasticos.agregarCursoPremium(tics);
 		los4Fantasticos.agregarCursoPremium(ingles);
 
-		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233458, false);
+		Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233458, false,billetera1);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
 		los4Fantasticos.asignarAlumnoACurso(36919350, 997);
 		los4Fantasticos.asignarAlumnoACurso(36919350, 998);
@@ -216,11 +254,18 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueCuentaCantidadDeAlumnosFreeHayEnCursoPremium(){
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+	
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
 		Curso ingles = new Curso("Ingles", 3, andy, 996, 20.0, true);
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false);
-		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, false);
-		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, false);
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false, billetera1);
+		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, false,billetera2);
+		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, false, billetera3);
 		los4Fantasticos.agregarNuevoAlumno(max);
 		los4Fantasticos.agregarNuevoAlumno(emanuel);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
@@ -237,11 +282,18 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueCuentaCantidadDeAlumnosFreeHayEnCursoFree(){
 			CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-
-			Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452, false);
-			Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459, true);
-			Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, false);
-			Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201, true);
+			BilleteraVirtual billetera1 = new BilleteraVirtual();
+			BilleteraVirtual billetera2 = new BilleteraVirtual();
+			BilleteraVirtual billetera3 = new BilleteraVirtual();
+			BilleteraVirtual billetera4 = new BilleteraVirtual();
+			billetera1.agregarDinero(6000.0);
+			billetera2.agregarDinero(6000.0);
+			billetera3.agregarDinero(6000.0);
+			billetera4.agregarDinero(6000.0);
+			Alumno gaston = new Alumno(36919350, "Gaston Rodriguez Achaval", 112233452, false,billetera1);
+			Alumno emanuelArguello = new Alumno(38469132, "Emanuel Arguello", 112233459, true,billetera2);
+			Alumno maximilianoDavies = new Alumno(41497315, "Maximiliano Davies", 112233455, false,billetera3);
+			Alumno gaston1 = new Alumno(33022376, "Gaston Tomas Santos", 1158476201, true,billetera4);
 
 			Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
 			Curso poo = new Curso("Programacion Orientada A Objetos", 5, andy, 998, 250.0, false);
@@ -278,6 +330,14 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueCalculaElDineroGanadoConTodosLosCursos(){
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+		
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
+		
 		Docente andi = new Docente(8987654, "Andres Borgeat", 112233453);
 		
 		
@@ -289,9 +349,9 @@ public class TestCentroEducativo {
 		los4Fantasticos.agregarCursoPremium(poo);
 		
 		
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, true);
-		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, true);
-		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, true);
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, true,billetera1);
+		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, true,billetera2);
+		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, true,billetera3);
 		los4Fantasticos.agregarNuevoAlumno(max);
 		los4Fantasticos.agregarNuevoAlumno(emanuel);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
@@ -310,12 +370,20 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueCalculeElDineroRecaudadoConSubsPremium() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+		
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
+		
 		Docente andi = new Docente(8987654, "Andres Borgeat", 112233453);
 		Curso poo = new Curso("Programacion Orientada A Objetos", 3, andi, 002, 50.0, true);
 
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false);
-		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, false);
-		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, false);
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false,billetera1);
+		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, false,billetera2);
+		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, false,billetera3);
 
 		max.cambiarEstadoPremium();
 		gaston.cambiarEstadoPremium();
@@ -343,15 +411,23 @@ public class TestCentroEducativo {
 	public void testQueCalculaDineroRecaudadoConUnCurso(){
 		
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		BilleteraVirtual billetera3 = new BilleteraVirtual();
+		
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		billetera3.agregarDinero(6000.0);
+		
 		Docente andy = new Docente(20647451, "Andres Borgeat", 112233456);
 
 		Curso ingles = new Curso("Ingles", 3, andy, 996, 20.0, false);
 		
 		los4Fantasticos.asignarProfesorACurso(20647451, 996);
 		los4Fantasticos.agregarCursoPremium(ingles);
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false);
-		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, false);
-		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, false);
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false,billetera1);
+		Alumno gaston = new Alumno(36919350, "Rodriguez Achaval Gaston", 112233451, false,billetera2);
+		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233458, false,billetera3);
 		los4Fantasticos.agregarNuevoAlumno(max);
 		los4Fantasticos.agregarNuevoAlumno(emanuel);
 		los4Fantasticos.agregarNuevoAlumno(gaston);
@@ -368,9 +444,14 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueSePuedaElimarUnAlumnoDelStaff() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, true);
-		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233456, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, true,billetera1);
+		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233456, false,billetera2);
 
 		los4Fantasticos.agregarNuevoAlumno(max);
 		los4Fantasticos.agregarNuevoAlumno(emanuel);
@@ -387,8 +468,14 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueSePuedaElimnarUnAlumnoDeUnCurso() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452, false);
-		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233455, false);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		BilleteraVirtual billetera2 = new BilleteraVirtual();
+		
+		billetera1.agregarDinero(6000.0);
+		billetera2.agregarDinero(6000.0);
+		
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452, false,billetera1);
+		Alumno emanuel = new Alumno(38469132, "Arguello Emanuel", 112233455, false,billetera2);
 		Docente andi = new Docente(234675232, "Andres Borgeat", 112233457);
 		Curso poo = new Curso("POO", 3, andi, 001, 540.0, false);
 
@@ -409,6 +496,9 @@ public class TestCentroEducativo {
 
 	@Test
 	public void testQueCuentoLaCantidadDeDineroGastadoQueLLevaALumnoEnCursos(){
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+	
+		billetera1.agregarDinero(6000.0);
 		
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
 		Docente andi = new Docente(8987654, "Andres Borgeat", 112233453);
@@ -422,7 +512,7 @@ public class TestCentroEducativo {
 		los4Fantasticos.agregarCursoPremium(poo);
 		
 		
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false);
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233455, false,billetera1);
 		assertTrue(los4Fantasticos.agregarNuevoAlumno(max));
 		
 		assertTrue(los4Fantasticos.asignarAlumnoACurso(43309952, 996));
@@ -439,7 +529,11 @@ public class TestCentroEducativo {
 	@Test
 	public void testQueCambiaNumeroDeTelefonoAlumno() {
 		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
-		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452, true);
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		
+		billetera1.agregarDinero(6000.0);
+		
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452, true,billetera1);
 		los4Fantasticos.agregarNuevoAlumno(max);
 		los4Fantasticos.cambioNumeroTelefonoDeAlumno(43309952, 111111111);
 		Integer ve = 111111111;
@@ -473,6 +567,28 @@ public class TestCentroEducativo {
 		
 		assertFalse(los4Fantasticos.agregarCursoPremium(java2));
 
+	}
+	
+	@Test
+	public void testQueVerificoQueBilleteraVirutalFuncionaBien() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Los 4 Fantasticos");
+		BilleteraVirtual billetera1 = new BilleteraVirtual();
+		billetera1.agregarDinero(6000.0);
+		
+		Docente andi = new Docente(8987654, "Andres Borgeat", 112233453);
+		los4Fantasticos.agregarDocenteAlStaff(andi);
+		Curso poo = new Curso("Programacion Orientada A Objetos",5, andi, 996, 2000.0, false);
+		Alumno max = new Alumno(43309952, "Davies Maxi", 112233452, false,billetera1);
+		los4Fantasticos.agregarCursoPremium(poo);
+		los4Fantasticos.agregarNuevoAlumno(max);
+		los4Fantasticos.asignarAlumnoACurso(max.getDni(),poo.getId());
+		los4Fantasticos.cambioEstadoDeAlumnoDeFreeAPremium(max);
+		
+		Double ve= 1500.0;
+		Double vo = max.getBilletera1().getMonto();
+		assertEquals(ve,vo);
+		assertTrue(max.getPremium());
+		
 	}
 	
 	/*@Test
