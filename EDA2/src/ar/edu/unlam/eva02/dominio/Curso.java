@@ -4,7 +4,7 @@ package ar.edu.unlam.eva02.dominio;
 
 	public class Curso {
 
-		private static Integer contadorId;
+		
 		private Integer id;
 		private String nombre;
 		private Integer cupo;
@@ -12,14 +12,14 @@ package ar.edu.unlam.eva02.dominio;
 		private HashSet<Alumno> alumnosInscriptos;
 		private Boolean premium;
 
-		public Curso(String nombre, Integer cupo, Boolean esPremium, Docente docenteQueDictaElCurso) {
+		public Curso(String nombre, Integer cupo, Boolean esPremium,Integer codigoCurso, Docente docenteQueDictaElCurso) {
 			
 			this.nombre = nombre;
 			this.cupo = cupo;
 			this.docente = docenteQueDictaElCurso;
 			this.alumnosInscriptos = new HashSet<Alumno>();
 			this.premium = esPremium;
-			this.id = contadorId++;
+			this.id = codigoCurso;
 
 		}
 

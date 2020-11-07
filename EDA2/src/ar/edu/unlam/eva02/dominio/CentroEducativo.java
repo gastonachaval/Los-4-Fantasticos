@@ -12,6 +12,7 @@ public class CentroEducativo {
 	private HashSet<Docente> docentes;
 	private HashSet<Alumno> alumnado;
 	private HashSet<Curso> cursos;
+	private HashSet<Curso> cursosConMitadDeCupoOcupada;
 
 	public CentroEducativo(String nombre) {
 		this.caja = 0.0;
@@ -19,12 +20,13 @@ public class CentroEducativo {
 		this.docentes = new HashSet<Docente>();
 		this.alumnado = new HashSet<Alumno>();
 		this.cursos = new HashSet<Curso>();
+		this.cursosConMitadDeCupoOcupada=new HashSet<Curso>();
 	}
 
 	public Boolean agregarDocenteAlStaff(Docente docenteAAgregar) {
 		return docentes.add(docenteAAgregar);
 	}
-	
+
 	public Boolean agregarCurso(Curso cursoAAgregar, Docente docenteQueDictaElCurso) {
 		if (docentes.contains(docenteQueDictaElCurso) == true) {
 			return cursos.add(cursoAAgregar);
@@ -45,7 +47,6 @@ public class CentroEducativo {
 		return docentes.size();
 	}
 
-	
 	public Boolean cambioNumeroTelefonoDeDocente(Integer dni, Integer telefonoNuevo) {
 		Boolean cambio = false;
 		for (Docente e : docentes) {
@@ -56,8 +57,6 @@ public class CentroEducativo {
 		}
 		return cambio;
 	}
-
-	
 
 	public Boolean cambioNumeroTelefonoDeAlumno(Integer dni, Integer telefonoNuevo) {
 		Boolean cambio = false;
@@ -90,10 +89,6 @@ public class CentroEducativo {
 		return contador;
 	}
 
-
-
-
-
 	public Boolean asignarAlumnoACurso(Integer idCurso, Integer dniAlumno) {
 
 		Alumno alumnoAAsignar = buscarAlumnoEnAlumnado(dniAlumno);
@@ -106,6 +101,7 @@ public class CentroEducativo {
 					Curso curso = (Curso) iterator.next();
 					if (curso.getId().equals(idCurso)) {
 						curso.agregarAlumnoACurso(alumnoAAsignar);
+						alumnoAAsignar.sumarUnCurso();
 						return true;
 					}
 				}
@@ -117,6 +113,7 @@ public class CentroEducativo {
 					Curso curso = (Curso) iterator.next();
 					if (curso.getId().equals(idCurso)) {
 						curso.agregarAlumnoACurso(alumnoAAsignar);
+						alumnoAAsignar.sumarUnCurso();
 						return true;
 					}
 				}
@@ -126,7 +123,6 @@ public class CentroEducativo {
 		}
 
 		return false;
-
 	}
 
 	private Curso buscarCurso(Integer idCurso) {
@@ -148,6 +144,7 @@ public class CentroEducativo {
 		}
 		return null;
 	}
+
 
 	public Boolean finalizarCurso(Curso cursoAFinalizar) {
 		if (getCursos().contains(cursoAFinalizar) == true) {
@@ -202,5 +199,23 @@ public class CentroEducativo {
 	public void cobrar(Double cobro) {
 		caja += cobro;
 	}
+	/*public void cursosConMitadDeSuCapacidadOcupada() {
+	Iterator<Curso> iterador= cursos.iterator();
+	while (iterador.hasNext()) {
+		
+	}
+	}*/
+	public HashSet<Curso> cursosConMasDeLaMitadDeSuCupoOcupado() {
+		
+		for (Curso cursito : cursos) {
+			if(cursito.contadorDeAlumnoEnCurso()>(cursito.getCupo())/2) {
+				
+				cursosConMitadDeCupoOcupada.add(cursito);
+			}
+		}
+		return cursosConMitadDeCupoOcupada;
+	}
+	
+	
 
 }
