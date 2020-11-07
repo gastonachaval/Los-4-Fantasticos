@@ -140,16 +140,6 @@ public class CentroEducativo {
 		return null;
 	}
 	
-	/*private Curso buscarCurso(Integer idCurso) {
-		for (Iterator<Curso> iterator = cursos.iterator(); iterator.hasNext();) {
-			Curso curso = (Curso) iterator.next();
-			if (curso.getId().equals(idCurso)) {
-				return curso;
-			}
-		}
-		return null;
-	}
-*/
 	private Alumno buscarAlumnoEnAlumnado(Integer dniABuscarEnElAlumnado) {
 		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
 			Alumno alumno = (Alumno) iterator.next();
