@@ -196,7 +196,6 @@ public class CentroEducativo {
 	public void cobrar(Double cobro) {
 		caja += cobro;
 	}
-
 	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree() {
 		Integer cantidad = 0;
 		for (Curso cursito : cursos) {
@@ -210,5 +209,23 @@ public class CentroEducativo {
 		}
 		return cantidad;
 	}
+
+	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree(Curso cursoAContar) {
+		Integer cantidad = 0;
+	
+			if (cursoAContar.getPremium().equals(false)) {
+				for (Alumno alumno : alumnado) {
+					if (alumno.getPremium()) {
+						cantidad += 1;
+					}
+				}
+			}
+		
+		return cantidad;
+	}
+	
+	
+		
+	
 
 }

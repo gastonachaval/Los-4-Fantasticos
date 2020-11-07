@@ -270,6 +270,28 @@ public class Tests {
 	}
 
 	@Test
+	public void testQueMuetsreLosAlumnosConPremiumEnUnCurso() {
+		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitación");
+		Docente andi = new Docente(12345678, "Andrés Borgeat", 1122334455);
+		centro1.agregarDocenteAlStaff(andi);
+		Curso poo = new Curso("Progamación O.O.", 1, false, andi, 001);
+		Alumno maxi = new Alumno(43309952, "Max Davies", 1122332211, 3500.0);
+		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
+		
+		centro1.agregarCurso(poo, andi);
+		centro1.agregarPersonaAlAlumnado(maxi);
+		centro1.agregarPersonaAlAlumnado(gaston);
+		centro1.pasarAlumnoAPremium(maxi);
+		centro1.pasarAlumnoAPremium(gaston);
+		centro1.asignarAlumnoACurso(001, 43309952);
+		centro1.asignarAlumnoACurso(001, 12345677);
+
+		Integer ve = 2;
+		assertEquals(ve, centro1.mostrarCantidadDeAlumnosPremiumEnCursoFree(poo));
+
+	}
+
+	@Test
 	public void testQueMuetsreLosAlumnosConPremiumEnCursoFree() {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitación");
 		Docente andi = new Docente(12345678, "Andrés Borgeat", 1122334455);
@@ -289,5 +311,7 @@ public class Tests {
 		assertEquals(ve, centro1.mostrarCantidadDeAlumnosPremiumEnCursoFree());
 
 	}
+	
+	
 
 }
