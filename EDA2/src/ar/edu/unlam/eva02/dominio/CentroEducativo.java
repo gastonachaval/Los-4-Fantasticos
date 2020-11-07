@@ -24,7 +24,7 @@ public class CentroEducativo {
 	public Boolean agregarDocenteAlStaff(Docente docenteAAgregar) {
 		return docentes.add(docenteAAgregar);
 	}
-	
+
 	public Boolean agregarCurso(Curso cursoAAgregar, Docente docenteQueDictaElCurso) {
 		if (docentes.contains(docenteQueDictaElCurso) == true) {
 			return cursos.add(cursoAAgregar);
@@ -45,7 +45,6 @@ public class CentroEducativo {
 		return docentes.size();
 	}
 
-	
 	public Boolean cambioNumeroTelefonoDeDocente(Integer dni, Integer telefonoNuevo) {
 		Boolean cambio = false;
 		for (Docente e : docentes) {
@@ -56,8 +55,6 @@ public class CentroEducativo {
 		}
 		return cambio;
 	}
-
-	
 
 	public Boolean cambioNumeroTelefonoDeAlumno(Integer dni, Integer telefonoNuevo) {
 		Boolean cambio = false;
@@ -89,10 +86,6 @@ public class CentroEducativo {
 		}
 		return contador;
 	}
-
-
-
-
 
 	public Boolean asignarAlumnoACurso(Integer idCurso, Integer dniAlumno) {
 
@@ -131,15 +124,15 @@ public class CentroEducativo {
 
 	}
 
-	private Curso buscarCurso(Integer idCurso){
-		for(Curso e: cursos){
-			if(e.getId().equals(idCurso)){
+	private Curso buscarCurso(Integer idCurso) {
+		for (Curso e : cursos) {
+			if (e.getId().equals(idCurso)) {
 				return e;
 			}
 		}
 		return null;
 	}
-	
+
 	private Alumno buscarAlumnoEnAlumnado(Integer dniABuscarEnElAlumnado) {
 		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
 			Alumno alumno = (Alumno) iterator.next();
@@ -202,6 +195,20 @@ public class CentroEducativo {
 
 	public void cobrar(Double cobro) {
 		caja += cobro;
+	}
+
+	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree() {
+		Integer cantidad = 0;
+		for (Curso cursito : cursos) {
+			if (cursito.getPremium() == false) {
+				for (Alumno alumno : alumnado) {
+					if (alumno.getPremium()) {
+						cantidad += 1;
+					}
+				}
+			}
+		}
+		return cantidad;
 	}
 
 }
