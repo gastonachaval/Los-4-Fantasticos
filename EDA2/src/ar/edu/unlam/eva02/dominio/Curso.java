@@ -1,5 +1,6 @@
 package ar.edu.unlam.eva02.dominio;
 
+
 	import java.util.HashSet;
 
 	public class Curso {
@@ -48,48 +49,45 @@ package ar.edu.unlam.eva02.dominio;
 			return true;
 		}
 
-		public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
-			return alumnosInscriptos.add(alumnoAAgregar);
-		}
 
-		public Boolean eliminarAlumnoDelCurso(Alumno alumnoAEliminar) {
-			return alumnosInscriptos.remove(alumnoAEliminar);
-		}
-
-		public Integer getId() {
-			return id;
-		}
-
-		public String getNombre() {
-			return nombre;
-		}
-
-		public Integer getCupo() {
-			return cupo;
-		}
-
-		public Docente getDocentePrincipal() {
-			return docente;
-		}
-
-		public HashSet<Alumno> getAlumnosInscriptos() {
-			return alumnosInscriptos;
-		}
-
-		
-		public Integer contadorDeAlumnoEnCurso() {
-			return alumnosInscriptos.size();
-		}
-
-		public Boolean getPremium() {
-			return premium;
-		}
-		
-		public Integer cantidadVacantesLibresEnElCurso() {
-			return cupo-contadorDeAlumnoEnCurso();
-		}
-
+	public Boolean agregarAlumnoACurso(Alumno alumnoAAgregar) {
+		return alumnosInscriptos.add(alumnoAAgregar);
 	}
 
+	public Boolean eliminarAlumnoDelCurso(Alumno alumnoAEliminar) {
+		return alumnosInscriptos.remove(alumnoAEliminar);
+	}
 
+	public Integer getId() {
+		return id;
+	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public Integer getCupo() {
+		return cupo;
+	}
+
+	public Docente getDocentePrincipal() {
+		return docente;
+	}
+
+	public HashSet<Alumno> getAlumnosInscriptos() {
+		return alumnosInscriptos;
+	}
+
+	public Integer contadorDeAlumnoEnCurso() {
+		return alumnosInscriptos.size();
+	}
+
+	public Boolean getPremium() {
+		return premium;
+	}
+
+	public Integer cantidadVacantesLibresEnElCurso() {
+		return cupo - contadorDeAlumnoEnCurso();
+	}
+
+}

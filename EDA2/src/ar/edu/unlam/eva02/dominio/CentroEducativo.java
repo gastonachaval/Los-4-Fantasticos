@@ -5,14 +5,14 @@ import java.util.Iterator;
 
 public class CentroEducativo {
 
-	private final double VALOR_MEMBRESIA_PREMIUM = 2500.00;
+	private final Double VALOR_MEMBRESIA_PREMIUM = 2500.0;
 	private final Integer CANTIDAD_MAXIMA_DE_CURSOS_QUE_PUEDE_TOMAR_UN_ALUMNO_FREE = 3;
 	private Double caja;
 	private String nombre;
 	private HashSet<Docente> docentes;
 	private HashSet<Alumno> alumnado;
 	private HashSet<Curso> cursos;
-	private HashSet<Curso> cursosConMitadDeCupoOcupada;
+	
 
 	public CentroEducativo(String nombre) {
 		this.caja = 0.0;
@@ -20,7 +20,7 @@ public class CentroEducativo {
 		this.docentes = new HashSet<Docente>();
 		this.alumnado = new HashSet<Alumno>();
 		this.cursos = new HashSet<Curso>();
-		this.cursosConMitadDeCupoOcupada=new HashSet<Curso>();
+	
 	}
 
 	public Boolean agregarDocenteAlStaff(Docente docenteAAgregar) {
@@ -126,10 +126,9 @@ public class CentroEducativo {
 	}
 
 	private Curso buscarCurso(Integer idCurso) {
-		for (Iterator<Curso> iterator = cursos.iterator(); iterator.hasNext();) {
-			Curso curso = (Curso) iterator.next();
-			if (curso.getId().equals(idCurso)) {
-				return curso;
+		for (Curso e : cursos) {
+			if (e.getId().equals(idCurso)) {
+				return e;
 			}
 		}
 		return null;
@@ -199,23 +198,67 @@ public class CentroEducativo {
 	public void cobrar(Double cobro) {
 		caja += cobro;
 	}
+
 	/*public void cursosConMitadDeSuCapacidadOcupada() {
 	Iterator<Curso> iterador= cursos.iterator();
 	while (iterador.hasNext()) {
 		
 	}
 	}*/
-	public HashSet<Curso> cursosConMasDeLaMitadDeSuCupoOcupado() {
-		
+
+	public HashSet<Curso> cursosConCapacidadLlena(){
+		HashSet<Curso> cursosConCupoLleno=new HashSet<Curso>();
 		for (Curso cursito : cursos) {
-			if(cursito.contadorDeAlumnoEnCurso()>(cursito.getCupo())/2) {
+			if(cursito.contadorDeAlumnoEnCurso()>=cursito.getCupo()) {
 				
-				cursosConMitadDeCupoOcupada.add(cursito);
+				cursosConCupoLleno.add(cursito);
 			}
 		}
-		return cursosConMitadDeCupoOcupada;
+		return cursosConCupoLleno;
+	}
+	public Integer cantidadDeCursosConCapacidadLlena() {
+		Integer contadorDeCursos=0;
+		for (Curso cursito : cursos) {
+			if(cursito.contadorDeAlumnoEnCurso()>=cursito.getCupo()) {
+				
+				contadorDeCursos++;
+			}
+		}
+		return contadorDeCursos;
 	}
 	
+
+	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree() {
+		Integer cantidad = 0;
+		for (Curso cursito : cursos) {
+			if (cursito.getPremium() == false) {
+				for (Alumno alumno : alumnado) {
+					if (alumno.getPremium()) {
+						cantidad += 1;
+					}
+				}
+			}
+		}
+		return cantidad;
+	}
+
+	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree(Curso cursoAContar) {
+		Integer cantidad = 0;
+	
+			if (cursoAContar.getPremium().equals(false)) {
+				for (Alumno alumno : alumnado) {
+					if (alumno.getPremium()) {
+						cantidad += 1;
+					}
+				}
+			}
+		
+		return cantidad;
+	}
+	
+	
+		
+
 	
 
 }

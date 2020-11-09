@@ -6,13 +6,33 @@ public class Alumno extends Persona {
 
 	private Boolean premium;
 	private Integer cantidadDeCursosTomados;
+	private Double canditdadDeDineroGastado;
 	private HashSet<Curso> cursosFinalizados;
-
-	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono) {
+	private BilleteraVirtual billetera1;
+	
+	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono, Boolean premium, BilleteraVirtual billetera1) {
 		super(dni, nombresYApellidos, nroTelefono);
-		premium = false;
+		this.premium = premium;
+		this.billetera1 = billetera1;
 		this.cantidadDeCursosTomados = 0;
 		this.cursosFinalizados = new HashSet<Curso>();
+		canditdadDeDineroGastado=0.0;
+	}
+
+	public BilleteraVirtual getBilletera1() {
+		return billetera1;
+	}
+
+	public void setBilletera1(BilleteraVirtual billetera1) {
+		this.billetera1 = billetera1;
+	}
+
+	public Double getCanditdadDeDineroGastado() {
+		return canditdadDeDineroGastado;
+	}
+
+	public void setCanditdadDeDineroGastado(Double canditdadDeDineroGastado) {
+		this.canditdadDeDineroGastado = canditdadDeDineroGastado;
 	}
 
 	public Boolean getPremium() {
@@ -20,11 +40,15 @@ public class Alumno extends Persona {
 	}
 
 	public void cambiarEstadoPremium() {
-		if (premium == false) {
+		if (premium == false ) {
 			premium = true;
 		} else {
 			premium = false;
 		}
+	}
+
+	public void setPremium(Boolean premium) {
+		this.premium = premium;
 	}
 
 	public Integer getCantidadDeCursosTomados() {
@@ -42,4 +66,6 @@ public class Alumno extends Persona {
 	public HashSet<Curso> getCursosFinalizados() {
 		return cursosFinalizados;
 	}
+
+
 }
