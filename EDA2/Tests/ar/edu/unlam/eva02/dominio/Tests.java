@@ -28,7 +28,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 6, true, andy, 001);
+		Curso poo = new Curso("Prog", 6, true, 001, andy);
 		assertTrue(centro1.agregarCurso(poo, andy));
 		Integer ve = centro1.getCursos().size();
 		System.out.println(ve);
@@ -39,7 +39,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 6, false, andy, 001);
+		Curso poo = new Curso("Prog", 6, false, 001, andy);
 		centro1.agregarCurso(poo, andy);
 		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 8000.0);
 		centro1.pasarAlumnoAPremium(maxi);
@@ -53,7 +53,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 6, true, andy, 001);
+		Curso poo = new Curso("Prog", 6, true, 001, andy);
 		centro1.agregarCurso(poo, andy);
 		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 800000.0);
 		centro1.agregarPersonaAlAlumnado(maxi);
@@ -67,7 +67,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 6, false, andy, 001);
+		Curso poo = new Curso("Prog", 6, false, 001, andy);
 		centro1.agregarCurso(poo, andy);
 		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 8000.0);
 		centro1.agregarPersonaAlAlumnado(maxi);
@@ -80,7 +80,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 6, true, andy, 001);
+		Curso poo = new Curso("Prog", 6, true, 001, andy);
 		centro1.agregarCurso(poo, andy);
 		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 8000.0);
 		centro1.agregarPersonaAlAlumnado(maxi);
@@ -93,7 +93,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 1, true, andy, 001);
+		Curso poo = new Curso("Prog", 1, true, 001, andy);
 		centro1.agregarCurso(poo, andy);
 		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 8000.0);
 		centro1.agregarPersonaAlAlumnado(maxi);
@@ -108,10 +108,10 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 1, false, andy, 001);
-		Curso basica1 = new Curso("Basica1", 2, false, andy, 002);
-		Curso ingles = new Curso("Ingles", 2, false, andy, 003);
-		Curso mate = new Curso("Matematicas", 2, false, andy, 004);
+		Curso poo = new Curso("Prog", 1, false, 001, andy);
+		Curso basica1 = new Curso("Basica1", 2, false, 002, andy);
+		Curso ingles = new Curso("Ingles", 2, false, 003, andy);
+		Curso mate = new Curso("Matematicas", 2, false, 004, andy);
 		centro1.agregarCurso(poo, andy);
 		centro1.agregarCurso(mate, andy);
 		centro1.agregarCurso(ingles, andy);
@@ -223,10 +223,10 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 1, false, andy, 001);
-		Curso basica1 = new Curso("Basica1", 2, false, andy, 002);
-		Curso ingles = new Curso("Ingles", 2, false, andy, 003);
-		Curso mate = new Curso("Matematicas", 2, false, andy, 004);
+		Curso poo = new Curso("Prog", 1, false, 001, andy);
+		Curso basica1 = new Curso("Basica1", 2, false, 002, andy);
+		Curso ingles = new Curso("Ingles", 2, false, 003, andy);
+		Curso mate = new Curso("Matematicas", 2, false, 004, andy);
 		centro1.agregarCurso(poo, andy);
 		centro1.agregarCurso(mate, andy);
 		centro1.agregarCurso(ingles, andy);
@@ -249,10 +249,10 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Docente andy = new Docente(26654556, "Andreas", 1101454722);
 		centro1.agregarDocenteAlStaff(andy);
-		Curso poo = new Curso("Prog", 1, false, andy, 001);
-		Curso basica1 = new Curso("Basica1", 2, false, andy, 002);
-		Curso ingles = new Curso("Ingles", 2, false, andy, 003);
-		Curso mate = new Curso("Matematicas", 2, false, andy, 004);
+		Curso poo = new Curso("Prog", 1, false, 001, andy);
+		Curso basica1 = new Curso("Basica1", 2, false, 002, andy);
+		Curso ingles = new Curso("Ingles", 2, false, 003, andy);
+		Curso mate = new Curso("Matematicas", 2, false, 004, andy);
 		centro1.agregarCurso(poo, andy);
 		centro1.agregarCurso(mate, andy);
 		centro1.agregarCurso(ingles, andy);
@@ -274,7 +274,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitación");
 		Docente andi = new Docente(12345678, "Andrés Borgeat", 1122334455);
 		centro1.agregarDocenteAlStaff(andi);
-		Curso poo = new Curso("Progamación O.O.", 1, false, andi, 001);
+		Curso poo = new Curso("Progamación O.O.", 1, false, 001, andi);
 		Alumno maxi = new Alumno(43309952, "Max Davies", 1122332211, 3500.0);
 		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
 		
@@ -296,7 +296,7 @@ public class Tests {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitación");
 		Docente andi = new Docente(12345678, "Andrés Borgeat", 1122334455);
 		centro1.agregarDocenteAlStaff(andi);
-		Curso poo = new Curso("Progamación O.O.", 1, false, andi, 001);
+		Curso poo = new Curso("Progamación O.O.", 1, false, 001, andi);
 		Alumno maxi = new Alumno(43309952, "Max Davies", 1122332211, 3500.0);
 		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
 		
