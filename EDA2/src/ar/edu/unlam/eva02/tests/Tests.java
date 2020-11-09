@@ -1,8 +1,13 @@
-package ar.edu.unlam.eva02.dominio;
+package ar.edu.unlam.eva02.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import ar.edu.unlam.eva02.dominio.Alumno;
+import ar.edu.unlam.eva02.dominio.CentroEducativo;
+import ar.edu.unlam.eva02.dominio.Curso;
+import ar.edu.unlam.eva02.dominio.Docente;
 
 public class Tests {
 

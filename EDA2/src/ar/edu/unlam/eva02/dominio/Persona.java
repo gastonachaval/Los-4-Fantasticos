@@ -4,8 +4,7 @@ public abstract class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona DNI:  " + dni + ", Nombre y Apellido= " + nombresYApellidos + ", TELEFONO: " + nroTelefono
-				+ " ";
+		return nombresYApellidos;
 	}
 
 	private Integer dni;

@@ -12,7 +12,6 @@ public class CentroEducativo {
 	private HashSet<Docente> docentes;
 	private HashSet<Alumno> alumnado;
 	private HashSet<Curso> cursos;
-	
 
 	public CentroEducativo(String nombre) {
 		this.caja = 0.0;
@@ -20,7 +19,7 @@ public class CentroEducativo {
 		this.docentes = new HashSet<Docente>();
 		this.alumnado = new HashSet<Alumno>();
 		this.cursos = new HashSet<Curso>();
-	
+
 	}
 
 	public Boolean agregarDocenteAlStaff(Docente docenteAAgregar) {
@@ -144,7 +143,6 @@ public class CentroEducativo {
 		return null;
 	}
 
-
 	public Boolean finalizarCurso(Curso cursoAFinalizar) {
 		if (getCursos().contains(cursoAFinalizar) == true) {
 			HashSet<Alumno> alumnosACertificar = cursoAFinalizar.getAlumnosInscriptos();
@@ -199,35 +197,29 @@ public class CentroEducativo {
 		caja += cobro;
 	}
 
-	/*public void cursosConMitadDeSuCapacidadOcupada() {
-	Iterator<Curso> iterador= cursos.iterator();
-	while (iterador.hasNext()) {
-		
-	}
-	}*/
-
-	public HashSet<Curso> cursosConCapacidadLlena(){
-		HashSet<Curso> cursosConCupoLleno=new HashSet<Curso>();
+	public HashSet<Curso> cursosConCapacidadLlena() {
+		HashSet<Curso> cursosConCupoLleno = new HashSet<Curso>();
 		for (Curso cursito : cursos) {
-			if(cursito.contadorDeAlumnoEnCurso()>=cursito.getCupo()) {
-				
+			if (cursito.contadorDeAlumnoEnCurso() >= cursito.getCupo()) {
+
 				cursosConCupoLleno.add(cursito);
 			}
 		}
 		return cursosConCupoLleno;
+
 	}
+
 	public Integer cantidadDeCursosConCapacidadLlena() {
-		Integer contadorDeCursos=0;
+		Integer contadorDeCursos = 0;
 		for (Curso cursito : cursos) {
-			if(cursito.contadorDeAlumnoEnCurso()>=cursito.getCupo()) {
-				
+			if (cursito.contadorDeAlumnoEnCurso() >= cursito.getCupo()) {
+
 				contadorDeCursos++;
 			}
 		}
 		return contadorDeCursos;
 	}
 	
-
 	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree() {
 		Integer cantidad = 0;
 		for (Curso cursito : cursos) {
@@ -244,21 +236,16 @@ public class CentroEducativo {
 
 	public Integer mostrarCantidadDeAlumnosPremiumEnCursoFree(Curso cursoAContar) {
 		Integer cantidad = 0;
-	
-			if (cursoAContar.getPremium().equals(false)) {
-				for (Alumno alumno : alumnado) {
-					if (alumno.getPremium()) {
-						cantidad += 1;
-					}
+
+		if (cursoAContar.getPremium().equals(false)) {
+			for (Alumno alumno : alumnado) {
+				if (alumno.getPremium()) {
+					cantidad += 1;
 				}
 			}
-		
+		}
+
 		return cantidad;
 	}
-	
-	
-		
-
-	
 
 }

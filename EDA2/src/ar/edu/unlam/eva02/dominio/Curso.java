@@ -10,8 +10,7 @@ package ar.edu.unlam.eva02.dominio;
 
 		@Override
 		public String toString() {
-			return "Curso [nombre=" + nombre + ", docente=" + docente + ", alumnosInscriptos=" + alumnosInscriptos
-					+ ", premium=" + premium + "]";
+			return "\n"+nombre+"  "+docente+"  "+premium;
 		}
 
 		private Integer id;
