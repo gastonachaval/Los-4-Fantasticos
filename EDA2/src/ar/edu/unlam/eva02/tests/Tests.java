@@ -35,8 +35,9 @@ public class Tests {
 		centro1.agregarDocenteAlStaff(andy);
 		Curso poo = new Curso("Prog", 6, true, 001, andy);
 		assertTrue(centro1.agregarCurso(poo, andy));
-		Integer ve = centro1.getCursos().size();
-		System.out.println(ve);
+		Integer ve = 1;
+		Integer vo = centro1.getCursos().size();
+		assertEquals(ve,vo);
 	}
 
 	@Test
