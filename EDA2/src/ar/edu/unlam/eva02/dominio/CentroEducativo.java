@@ -197,7 +197,7 @@ public class CentroEducativo {
 		caja += cobro;
 	}
 
-	public HashSet<Curso> cursosConCapacidadLlena() {
+	public HashSet<Curso> listadoDeCursosConCapacidadLlena() {
 		HashSet<Curso> cursosConCupoLleno = new HashSet<Curso>();
 		for (Curso cursito : cursos) {
 			if (cursito.contadorDeAlumnoEnCurso() >= cursito.getCupo()) {
@@ -247,5 +247,37 @@ public class CentroEducativo {
 
 		return cantidad;
 	}
+	
+	public HashSet<Alumno> listadoDeAlumnosPremiumEnCursosFree(){
+		HashSet<Alumno> listado=new HashSet<Alumno>();
+		for (Iterator<Curso> iterator = cursos.iterator(); iterator.hasNext();) {
+			Curso curso = (Curso) iterator.next();
+			if (curso.getPremium().equals(false)) {
+				for (Iterator<Alumno> iterator2 = curso.getAlumnosInscriptos().iterator(); iterator2.hasNext();) {
+					Alumno alumno = (Alumno) iterator2.next();
+					if (alumno.getPremium().equals(true)) {
+						listado.add(alumno);
+					}
+				}
+			}
+		}
+		return listado;
+	}
 
+	public HashSet<Docente> listadoDeDocentesEnElStaff(){
+		HashSet<Docente> listado=new HashSet<Docente>();
+		for (Iterator<Docente> iterator = docentes.iterator(); iterator.hasNext();) {
+			Docente docente = (Docente) iterator.next();
+			listado.add(docente);
+		}
+		return listado;
+	}
+	public HashSet<Alumno> listadoAlumnado(){
+		HashSet<Alumno> listado=new HashSet<Alumno>();
+		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
+			Alumno alumno = (Alumno) iterator.next();
+			listado.add(alumno);
+		}
+		return listado;
+	}
 }

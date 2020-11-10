@@ -10,7 +10,7 @@ package ar.edu.unlam.eva02.dominio;
 
 		@Override
 		public String toString() {
-			return "\n"+nombre+"  "+docente+"  "+premium;
+			return nombre;
 		}
 
 		private Integer id;
