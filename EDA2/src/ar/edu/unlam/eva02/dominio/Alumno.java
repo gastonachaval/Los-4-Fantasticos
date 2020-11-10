@@ -9,12 +9,12 @@ public class Alumno extends Persona {
 	private HashSet<Curso> cursosFinalizados;
 	private Double billetera;
 
-	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono,Double platitaEnElBolsillo) {
+	public Alumno(Integer dni, String nombresYApellidos, Integer nroTelefono, Double platitaEnElBolsillo) {
 		super(dni, nombresYApellidos, nroTelefono);
 		premium = false;
 		this.cantidadDeCursosTomados = 0;
 		this.cursosFinalizados = new HashSet<Curso>();
-		this.billetera=platitaEnElBolsillo;
+		this.billetera = platitaEnElBolsillo;
 	}
 
 	public Boolean getPremium() {
@@ -24,9 +24,9 @@ public class Alumno extends Persona {
 	public void cambiarEstadoPremium() {
 		if (premium == false) {
 			premium = true;
-		} else {
-			premium = false;
 		}
+		premium = false;
+
 	}
 
 	public Integer getCantidadDeCursosTomados() {
@@ -36,7 +36,7 @@ public class Alumno extends Persona {
 	public void sumarUnCurso() {
 		cantidadDeCursosTomados++;
 	}
-	
+
 	public void restarUnCurso() {
 		cantidadDeCursosTomados--;
 	}
@@ -52,13 +52,13 @@ public class Alumno extends Persona {
 	public void agregarDineroALaBilletera(Double dineroAAgregar) {
 		this.billetera += dineroAAgregar;
 	}
-	
+
 	public Boolean imprimirCertificacion(Curso cursoACertificar) {
 		restarUnCurso();
 		return cursosFinalizados.add(cursoACertificar);
 	}
-	
+
 	public void abonar(Double monto) {
-		this.billetera-=monto;
+		this.billetera -= monto;
 	}
 }
