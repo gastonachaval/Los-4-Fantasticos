@@ -224,7 +224,7 @@ public class CentroEducativo {
 		Integer cantidad = 0;
 		for (Curso cursito : cursos) {
 			if (cursito.getPremium() == false) {
-				for (Alumno alumno : alumnado) {
+				for (Alumno alumno : cursito.getAlumnosInscriptos()) {
 					if (alumno.getPremium()) {
 						cantidad += 1;
 					}
@@ -238,8 +238,8 @@ public class CentroEducativo {
 		Integer cantidad = 0;
 
 		if (cursoAContar.getPremium().equals(false)) {
-			for (Alumno alumno : alumnado) {
-				if (alumno.getPremium()) {
+			for (Alumno alumno : cursoAContar.getAlumnosInscriptos()) {
+				if (alumno.getPremium().equals(true)) {
 					cantidad += 1;
 				}
 			}
@@ -247,6 +247,8 @@ public class CentroEducativo {
 
 		return cantidad;
 	}
+	
+
 	
 	public HashSet<Alumno> listadoDeAlumnosPremiumEnCursosFree(){
 		HashSet<Alumno> listado=new HashSet<Alumno>();

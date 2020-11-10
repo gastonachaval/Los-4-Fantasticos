@@ -39,18 +39,16 @@ public class Interfaz {
 		centro.asignarAlumnoACurso(100, 4556152);
 		centro.asignarAlumnoACurso(101, 15412341);
 		centro.asignarAlumnoACurso(102, 15412341);
-		System.out.println("Listado de alumnos premium en cursos free:\n");
+		System.out.println(centro.getDocentes());
+		/*System.out.println("Listado de alumnos premium en cursos free:\n");
 		System.out.println(centro.listadoDeAlumnosPremiumEnCursosFree());
 		System.out.println("\nListado de cursos con capacidad llena:\n");
 		System.out.println(centro.listadoDeCursosConCapacidadLlena());
 		System.out.println("\nListado de docentes en el staff:\n");
 		System.out.println(centro.listadoDeDocentesEnElStaff());
 		System.out.println("\nListado del alumnado total:\n");
-		System.out.println(centro.listadoAlumnado());
-		/*CentroEducativo centro=new CentroEducativo("PLATZI");
-		Docente nuevoDocente=new Docente(40136070, "juan monteagudo", 1154252158);
-		Curso javaCurso=new Curso("java", 3, false,100, nuevoDocente);
-		System.out.println(javaCurso);*/
+		System.out.println(centro.listadoAlumnado());*/
+
 	}
 
 }
