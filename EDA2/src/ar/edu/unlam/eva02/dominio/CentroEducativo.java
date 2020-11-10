@@ -269,7 +269,7 @@ public class CentroEducativo {
 		return listado;
 	}
 
-	public HashSet<Docente> listadoDeDocentesEnElStaff() {
+	/*public HashSet<Docente> listadoDeDocentesEnElStaff1() {
 		HashSet<Docente> listado = new HashSet<Docente>();
 		for (Iterator<Docente> iterator = docentes.iterator(); iterator.hasNext();) {
 			Docente docente = (Docente) iterator.next();
@@ -278,12 +278,12 @@ public class CentroEducativo {
 		return listado;
 	}
 
-	public HashSet<Alumno> listadoAlumnado() {
+	public HashSet<Alumno> listadoAlumnado1() {
 		HashSet<Alumno> listado = new HashSet<Alumno>();
 		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
 			Alumno alumno = (Alumno) iterator.next();
 			listado.add(alumno);
 		}
 		return listado;
-	}
+	}*/
 }

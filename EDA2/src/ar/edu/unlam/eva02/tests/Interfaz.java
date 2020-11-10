@@ -39,15 +39,15 @@ public class Interfaz {
 		centro.asignarAlumnoACurso(100, 4556152);
 		centro.asignarAlumnoACurso(101, 15412341);
 		centro.asignarAlumnoACurso(102, 15412341);
-		System.out.println(centro.getDocentes());
-		/*System.out.println("Listado de alumnos premium en cursos free:\n");
+
+		System.out.println("Listado de alumnos premium en cursos free:\n");
 		System.out.println(centro.listadoDeAlumnosPremiumEnCursosFree());
 		System.out.println("\nListado de cursos con capacidad llena:\n");
 		System.out.println(centro.listadoDeCursosConCapacidadLlena());
 		System.out.println("\nListado de docentes en el staff:\n");
-		System.out.println(centro.listadoDeDocentesEnElStaff());
+		System.out.println(centro.getDocentes());
 		System.out.println("\nListado del alumnado total:\n");
-		System.out.println(centro.listadoAlumnado());*/
+		System.out.println(centro.getAlumnos());
 
 	}
 
