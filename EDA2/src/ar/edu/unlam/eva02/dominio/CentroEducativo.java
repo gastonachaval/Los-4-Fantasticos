@@ -38,14 +38,6 @@ public class CentroEducativo {
 
 	}
 
-	public Integer cuentoAlumnado() {
-		return alumnado.size();
-	}
-
-	public Integer cuentoDocentesEnStaff() {
-		return docentes.size();
-	}
-
 	public Boolean cambioNumeroTelefonoDeDocente(Integer dni, Integer telefonoNuevo) {
 		for (Docente e : docentes) {
 			if (e.getDni().equals(dni)) {
@@ -163,10 +155,6 @@ public class CentroEducativo {
 		return caja;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
 	public HashSet<Docente> getDocentes() {
 		return docentes;
 	}
@@ -266,33 +254,16 @@ public class CentroEducativo {
 		}
 		return listado;
 	}
-	
-	public HashSet<Alumno> listadoDeAlumnosQueFinalizaronAlMenosUnCurso(){
-		HashSet<Alumno> listado=new HashSet<Alumno>();
+
+	public HashSet<Alumno> listadoDeAlumnosQueFinalizaronAlMenosUnCurso() {
+		HashSet<Alumno> listado = new HashSet<Alumno>();
 		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
 			Alumno alumno = (Alumno) iterator.next();
-			if (alumno.getCursosFinalizados().size()!=0) {
+			if (alumno.getCursosFinalizados().size() != 0) {
 				listado.add(alumno);
 			}
 		}
 		return listado;
 	}
 
-	/*public HashSet<Docente> listadoDeDocentesEnElStaff1() {
-		HashSet<Docente> listado = new HashSet<Docente>();
-		for (Iterator<Docente> iterator = docentes.iterator(); iterator.hasNext();) {
-			Docente docente = (Docente) iterator.next();
-			listado.add(docente);
-		}
-		return listado;
-	}
-
-	public HashSet<Alumno> listadoAlumnado1() {
-		HashSet<Alumno> listado = new HashSet<Alumno>();
-		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
-			Alumno alumno = (Alumno) iterator.next();
-			listado.add(alumno);
-		}
-		return listado;
-	}*/
 }
