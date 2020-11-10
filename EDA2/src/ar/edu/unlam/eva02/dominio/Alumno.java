@@ -22,7 +22,7 @@ public class Alumno extends Persona {
 	}
 
 	public void cambiarEstadoPremium() {
-		premium=!premium;
+		premium = !premium;
 	}
 
 	public Integer getCantidadDeCursosTomados() {

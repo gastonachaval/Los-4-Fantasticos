@@ -282,7 +282,7 @@ public class Tests {
 		Curso poo = new Curso("Progamación O.O.", 1, false, 001, andi);
 		Alumno maxi = new Alumno(43309952, "Max Davies", 1122332211, 3500.0);
 		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
-		
+
 		centro1.agregarCurso(poo, andi);
 		centro1.agregarPersonaAlAlumnado(maxi);
 		centro1.agregarPersonaAlAlumnado(gaston);
@@ -304,7 +304,7 @@ public class Tests {
 		Curso poo = new Curso("Progamación O.O.", 1, false, 001, andi);
 		Alumno maxi = new Alumno(43309952, "Max Davies", 1122332211, 3500.0);
 		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
-		
+
 		centro1.agregarCurso(poo, andi);
 		centro1.agregarPersonaAlAlumnado(maxi);
 		centro1.agregarPersonaAlAlumnado(gaston);
@@ -316,29 +316,31 @@ public class Tests {
 		assertEquals(ve, centro1.mostrarCantidadDeAlumnosPremiumEnCursoFree());
 
 	}
+
 	@Test
 	public void queNoSePuedaAgregarUnCursoConUnDoncenteFueraDelStaff() {
-		CentroEducativo centro=new CentroEducativo("PLATZI");
-		Docente nuevoDocente=new Docente(40136070, "juan monteagudo", 1154252158);
-		Curso javaCurso=new Curso("java", 4, false,100, nuevoDocente);
-		Alumno nuevoAlumno=new Alumno(15412341, "emanuel arguello", 1245151472, 100000.0);
-		Docente otro=new Docente(401360470, "andi andi", 1154428);
+		CentroEducativo centro = new CentroEducativo("PLATZI");
+		Docente nuevoDocente = new Docente(40136070, "juan monteagudo", 1154252158);
+		Curso javaCurso = new Curso("java", 4, false, 100, nuevoDocente);
+		Alumno nuevoAlumno = new Alumno(15412341, "emanuel arguello", 1245151472, 100000.0);
+		Docente otro = new Docente(401360470, "andi andi", 1154428);
 		centro.agregarDocenteAlStaff(nuevoDocente);
 		centro.agregarPersonaAlAlumnado(nuevoAlumno);
-		//centro.agregarCurso(javaCurso, otro);
-		assertFalse(centro.agregarCurso(javaCurso, otro));	
-		//centro.asignarAlumnoACurso(100, 15412341)
-		
+		// centro.agregarCurso(javaCurso, otro);
+		assertFalse(centro.agregarCurso(javaCurso, otro));
+		// centro.asignarAlumnoACurso(100, 15412341)
+
 	}
+
 	@Test
 	public void cantidadDeCursosConCupoLleno() {
-		Integer valorEsperado=2;
-		CentroEducativo centro=new CentroEducativo("PLATZI");
-		Docente nuevoDocente=new Docente(40136070, "juan monteagudo", 1154252158);
-		Curso javaCurso=new Curso("java", 3, false,100, nuevoDocente);
-		Alumno emanuel=new Alumno(15412341, "emanuel arguello", 1245151472, 100000.0);
-		Alumno gaston=new Alumno(45612, "Gaston achaval", 1424225, 200000.0);
-		Alumno max=new Alumno(455612, "Maxi", 14245225, 200000.0);
+		Integer valorEsperado = 2;
+		CentroEducativo centro = new CentroEducativo("PLATZI");
+		Docente nuevoDocente = new Docente(40136070, "juan monteagudo", 1154252158);
+		Curso javaCurso = new Curso("java", 3, false, 100, nuevoDocente);
+		Alumno emanuel = new Alumno(15412341, "emanuel arguello", 1245151472, 100000.0);
+		Alumno gaston = new Alumno(45612, "Gaston achaval", 1424225, 200000.0);
+		Alumno max = new Alumno(455612, "Maxi", 14245225, 200000.0);
 		centro.agregarDocenteAlStaff(nuevoDocente);
 		centro.agregarPersonaAlAlumnado(emanuel);
 		centro.agregarPersonaAlAlumnado(gaston);
@@ -347,22 +349,17 @@ public class Tests {
 		centro.asignarAlumnoACurso(100, 15412341);
 		centro.asignarAlumnoACurso(100, 45612);
 		centro.asignarAlumnoACurso(100, 455612);
-		Curso cursoPoo=new Curso("ppo", 3, false, 101, nuevoDocente);
+		Curso cursoPoo = new Curso("ppo", 3, false, 101, nuevoDocente);
 		centro.agregarCurso(cursoPoo, nuevoDocente);
 		centro.asignarAlumnoACurso(101, 45612);
-		Curso c=new Curso("c", 2, false, 102, nuevoDocente);
+		Curso c = new Curso("c", 2, false, 102, nuevoDocente);
 		centro.agregarCurso(c, nuevoDocente);
-		centro.asignarAlumnoACurso(102,455612 );
+		centro.asignarAlumnoACurso(102, 455612);
 		centro.asignarAlumnoACurso(102, 15412341);
-		Integer valorObtenido=centro.cantidadDeCursosConCapacidadLlena();
+		Integer valorObtenido = centro.cantidadDeCursosConCapacidadLlena();
 
-		
 		assertEquals(valorObtenido, valorEsperado);
-		
-		
-		
+
 	}
-	
-	
 
 }

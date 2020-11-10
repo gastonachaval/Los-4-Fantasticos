@@ -10,7 +10,6 @@ public abstract class Persona {
 	private Integer dni;
 	private String nombresYApellidos;
 	private Integer nroTelefono;
-	
 
 	public Persona(Integer dni, String nombresYApellidos, Integer nroTelefono) {
 		super();
@@ -55,7 +54,7 @@ public abstract class Persona {
 	public Integer getNroTelefono() {
 		return nroTelefono;
 	}
-	
+
 	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
@@ -63,9 +62,9 @@ public abstract class Persona {
 	public void setNombresYApellidos(String nombresYApellidos) {
 		this.nombresYApellidos = nombresYApellidos;
 	}
-	
+
 	public void setNroTelefono(Integer nroTelefono) {
-		this.nroTelefono=nroTelefono;
+		this.nroTelefono = nroTelefono;
 	}
-	
+
 }
