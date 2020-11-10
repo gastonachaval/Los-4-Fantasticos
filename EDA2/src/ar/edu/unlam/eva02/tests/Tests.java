@@ -331,6 +331,7 @@ public class Tests {
 		assertEquals(ve, centro1.mostrarCantidadDeAlumnosPremiumEnCursoFree());
 
 	}
+	
 	@Test
 	public void listadoDeAlumnosPremiumEnCentro() {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitación");
@@ -351,6 +352,26 @@ public class Tests {
 		Integer ve = 2;
 		Integer vo=centro1.listadoDeAlumnosPremium().size();
 		assertEquals(ve, vo);
+
+	}
+	
+	@Test
+	public void listadoDeAlumnosFree() {
+		CentroEducativo los4Fantasticos = new CentroEducativo("Centro de Capacitación");
+		Alumno maxi = new Alumno(43309952, "Maxi Davies", 1122332211, 3500.0);
+		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
+		Alumno ema = new Alumno(4339952, "Emanuel Arguello", 112233211, 3500.0);
+		Alumno gastonAchaval = new Alumno(12345657, "Gaston Achaval", 1144332233, 5000.0);
+		
+		los4Fantasticos.agregarPersonaAlAlumnado(maxi);
+		los4Fantasticos.agregarPersonaAlAlumnado(gaston);
+		los4Fantasticos.agregarPersonaAlAlumnado(ema);
+		los4Fantasticos.agregarPersonaAlAlumnado(gastonAchaval);
+		los4Fantasticos.pasarAlumnoAPremium(maxi);
+		los4Fantasticos.pasarAlumnoAPremium(gaston);
+
+		int ve = 2;
+		assertEquals(ve, los4Fantasticos.listadoDeAlumnosFree().size());
 
 	}
 
