@@ -374,7 +374,26 @@ public class Tests {
 		Integer valorObtenido = centro.cantidadDeCursosConCapacidadLlena();
 
 		assertEquals(valorObtenido, valorEsperado);
-
+	}
+	
+	@Test
+	public void testQueBorraUnAlumnoDelStaff() {
+		CentroEducativo centro = new CentroEducativo("PLATZI");
+		Docente nuevoDocente = new Docente(40136070, "juan monteagudo", 1154252158);
+		Curso javaCurso = new Curso("java", 3, false, 100, nuevoDocente);
+		Alumno emanuel = new Alumno(15412341, "emanuel arguello", 1245151472, 100000.0);
+		Alumno max = new Alumno(455612, "Maxi", 14245225, 200000.0);
+		Alumno gaston = new Alumno(45612, "Gaston achaval", 1424225, 200000.0);
+		
+		centro.agregarDocenteAlStaff(nuevoDocente);
+		centro.agregarPersonaAlAlumnado(emanuel);
+		centro.agregarPersonaAlAlumnado(max);
+		centro.agregarPersonaAlAlumnado(gaston);
+		centro.agregarCurso(javaCurso, nuevoDocente);
+		
+		centro.eliminarAlumnoDelStaff(max);
+		int ve = 2;
+		assertEquals(ve, centro.getAlumnos().size());
 	}
 
 }
