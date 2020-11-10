@@ -212,7 +212,7 @@ public class Tests {
 
 	}
 	@Test
-	public void testQueVerificaQueVerifiqueLaCaja() {
+	public void testQueVerificaLaCaja() {
 		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
 		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 3000.0);
 		Alumno ema= new Alumno(40136070, "Emanuel Arguello", 15241547, 4000.0);
