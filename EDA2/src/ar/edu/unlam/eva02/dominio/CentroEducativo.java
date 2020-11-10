@@ -144,13 +144,13 @@ public class CentroEducativo {
 	}
 
 	public Boolean finalizarCurso(Curso cursoAFinalizar) {
-		if (getCursos().contains(cursoAFinalizar) == true) {
+		if (getCursos().contains(cursoAFinalizar)) {
 			HashSet<Alumno> alumnosACertificar = cursoAFinalizar.getAlumnosInscriptos();
 			for (Iterator<Alumno> iterator = alumnosACertificar.iterator(); iterator.hasNext();) {
 				Alumno alumnoACertificar = (Alumno) iterator.next();
 				for (Iterator<Alumno> iterator2 = alumnado.iterator(); iterator2.hasNext();) {
 					Alumno alumnado = (Alumno) iterator2.next();
-					if (alumnado.equals(alumnoACertificar) == true) {
+					if (alumnado.equals(alumnoACertificar)) {
 						alumnado.imprimirCertificacion(cursoAFinalizar);
 						break;
 					}
