@@ -67,9 +67,9 @@ public class CentroEducativo {
 		}
 		return contador;
 	}
-	
+
 	public HashSet<Alumno> listadoDeAlumnosPremium() {
-		HashSet <Alumno> listadoAlumnosPremium=new HashSet<Alumno>();
+		HashSet<Alumno> listadoAlumnosPremium = new HashSet<Alumno>();
 		for (Alumno e : alumnado) {
 			if (e.getPremium().equals(true)) {
 				listadoAlumnosPremium.add(e);
@@ -77,7 +77,6 @@ public class CentroEducativo {
 		}
 		return listadoAlumnosPremium;
 	}
-	
 
 	public Integer totalDeAlumnosFree() {
 		Integer contador = 0;
@@ -114,7 +113,7 @@ public class CentroEducativo {
 					if (curso.getId().equals(idCurso)) {
 						curso.agregarAlumnoACurso(alumnoAAsignar);
 						alumnoAAsignar.sumarUnCurso();
-						return true; 
+						return true;
 					}
 				}
 
@@ -275,6 +274,16 @@ public class CentroEducativo {
 			}
 		}
 		return listado;
+	}
+	
+	public HashSet<Alumno> listadoDeAlumnosFree(){
+		HashSet <Alumno> listadoAlumnosFree=new HashSet<Alumno>();
+		for (Alumno alumno : alumnado) {
+			if(alumno.getPremium().equals(false)) {
+					listadoAlumnosFree.add(alumno);
+			}
+		}
+		return listadoAlumnosFree;
 	}
 
 }
