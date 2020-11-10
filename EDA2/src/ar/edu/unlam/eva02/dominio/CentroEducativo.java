@@ -27,7 +27,7 @@ public class CentroEducativo {
 	}
 
 	public Boolean agregarCurso(Curso cursoAAgregar, Docente docenteQueDictaElCurso) {
-		if (docentes.contains(docenteQueDictaElCurso) == true) {
+		if (docentes.contains(docenteQueDictaElCurso)) {
 			return cursos.add(cursoAAgregar);
 		}
 		return false;
@@ -47,25 +47,23 @@ public class CentroEducativo {
 	}
 
 	public Boolean cambioNumeroTelefonoDeDocente(Integer dni, Integer telefonoNuevo) {
-		Boolean cambio = false;
 		for (Docente e : docentes) {
 			if (e.getDni().equals(dni)) {
 				e.setNroTelefono(telefonoNuevo);
-				return cambio = true;
+				return true;
 			}
 		}
-		return cambio;
+		return false;
 	}
 
 	public Boolean cambioNumeroTelefonoDeAlumno(Integer dni, Integer telefonoNuevo) {
-		Boolean cambio = false;
 		for (Alumno e : alumnado) {
 			if (e.getDni().equals(dni)) {
 				e.setNroTelefono(telefonoNuevo);
-				return cambio = true;
+				return true;
 			}
 		}
-		return cambio;
+		return false;
 	}
 
 	public Integer totalDeAlumnosConPremium() {
