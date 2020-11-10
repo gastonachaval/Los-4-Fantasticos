@@ -39,6 +39,7 @@ public class Interfaz {
 		centro.asignarAlumnoACurso(100, 4556152);
 		centro.asignarAlumnoACurso(101, 15412341);
 		centro.asignarAlumnoACurso(102, 15412341);
+		centro.finalizarCurso(pythonCurso);
 
 		System.out.println("Listado de alumnos premium en cursos free:\n");
 		System.out.println(centro.listadoDeAlumnosPremiumEnCursosFree());
@@ -48,6 +49,8 @@ public class Interfaz {
 		System.out.println(centro.getDocentes());
 		System.out.println("\nListado del alumnado total:\n");
 		System.out.println(centro.getAlumnos());
+		System.out.println("\nListado de alumnos que finalizaron al menos un curso:\n");
+		System.out.println(centro.listadoDeAlumnosQueFinalizaronAlMenosUnCurso());
 
 	}
 
