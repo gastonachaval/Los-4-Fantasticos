@@ -331,6 +331,28 @@ public class Tests {
 		assertEquals(ve, centro1.mostrarCantidadDeAlumnosPremiumEnCursoFree());
 
 	}
+	@Test
+	public void listadoDeAlumnosPremiumEnCentro() {
+		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitación");
+		Alumno maxi = new Alumno(43309952, "Max Davies", 1122332211, 3500.0);
+		Alumno gaston = new Alumno(12345677, "Gaston Santos", 1122332233, 5000.0);
+		Alumno ema = new Alumno(4339952, "Emanuel Arguello", 112233211, 3500.0);
+		Alumno gastonAchaval = new Alumno(12345657, "Gaston Achaval", 1144332233, 5000.0);
+		
+		centro1.agregarPersonaAlAlumnado(maxi);
+		centro1.agregarPersonaAlAlumnado(gaston);
+		centro1.agregarPersonaAlAlumnado(ema);
+		centro1.agregarPersonaAlAlumnado(gastonAchaval);
+		centro1.pasarAlumnoAPremium(maxi);
+		centro1.pasarAlumnoAPremium(gaston);
+
+		
+
+		Integer ve = 2;
+		Integer vo=centro1.listadoDeAlumnosPremium().size();
+		assertEquals(ve, vo);
+
+	}
 
 	@Test
 	public void queNoSePuedaAgregarUnCursoConUnDoncenteFueraDelStaff() {
