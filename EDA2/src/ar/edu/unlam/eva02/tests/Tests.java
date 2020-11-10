@@ -211,6 +211,20 @@ public class Tests {
 		assertEquals(ve, vo);
 
 	}
+	@Test
+	public void testQueVerificaQueVerifiqueLaCaja() {
+		CentroEducativo centro1 = new CentroEducativo("Centro de Capacitacion");
+		Alumno maxi = new Alumno(40214545, "Maximiliano Davies", 11547878, 3000.0);
+		Alumno ema= new Alumno(40136070, "Emanuel Arguello", 15241547, 4000.0);
+		centro1.agregarPersonaAlAlumnado(maxi);
+		centro1.pasarAlumnoAPremium(maxi);
+		centro1.agregarPersonaAlAlumnado(ema);
+		centro1.pasarAlumnoAPremium(ema);
+		Double ve = 5000.0;
+		Double vo = centro1.getCaja();
+		assertEquals(ve, vo);
+
+	}
 
 	@Test
 	public void testQueLePuedoAgregarDineroAlaBilletera() {

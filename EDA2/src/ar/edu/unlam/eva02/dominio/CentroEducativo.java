@@ -111,7 +111,7 @@ public class CentroEducativo {
 					if (curso.getId().equals(idCurso)) {
 						curso.agregarAlumnoACurso(alumnoAAsignar);
 						alumnoAAsignar.sumarUnCurso();
-						return true;
+						return true; 
 					}
 				}
 
