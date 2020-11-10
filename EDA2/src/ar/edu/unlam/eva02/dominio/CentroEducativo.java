@@ -268,6 +268,17 @@ public class CentroEducativo {
 		}
 		return listado;
 	}
+	
+	public HashSet<Alumno> listadoDeAlumnosQueFinalizaronAlMenosUnCurso(){
+		HashSet<Alumno> listado=new HashSet<Alumno>();
+		for (Iterator<Alumno> iterator = alumnado.iterator(); iterator.hasNext();) {
+			Alumno alumno = (Alumno) iterator.next();
+			if (alumno.getCursosFinalizados().size()!=0) {
+				listado.add(alumno);
+			}
+		}
+		return listado;
+	}
 
 	/*public HashSet<Docente> listadoDeDocentesEnElStaff1() {
 		HashSet<Docente> listado = new HashSet<Docente>();
