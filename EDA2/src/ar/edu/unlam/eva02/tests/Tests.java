@@ -195,7 +195,7 @@ public class Tests {
 		centro1.agregarPersonaAlAlumnado(Ema);
 		centro1.pasarAlumnoAPremium(maxi);
 		Integer ve = 3;
-		Integer vo = centro1.cuentoAlumnado();
+		Integer vo = centro1.getAlumnos().size();
 		assertEquals(ve, vo);
 
 	}
