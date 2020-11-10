@@ -51,10 +51,14 @@ public class Interfaz {
 		System.out.println(centro.getCursos());
 		System.out.println("\nListado de docentes en el staff:\n");
 		System.out.println(centro.getDocentes());
-		System.out.println("\nListado del alumnado total:\n");
+		System.out.println("\nListado del alumnado completo:\n");
 		System.out.println(centro.getAlumnos());
 		System.out.println("\nListado de alumnos que finalizaron al menos un curso:\n");
 		System.out.println(centro.listadoDeAlumnosQueFinalizaronAlMenosUnCurso());
+		System.out.println("\nListado de alumnos premium:\n");
+		System.out.println(centro.listadoDeAlumnosPremium());
+		System.out.println("\nListado de alumnos Free:\n");
+		System.out.println(centro.listadoDeAlumnosFree());
 
 	}
 

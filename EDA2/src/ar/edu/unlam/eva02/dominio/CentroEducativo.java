@@ -275,15 +275,19 @@ public class CentroEducativo {
 		}
 		return listado;
 	}
-	
-	public HashSet<Alumno> listadoDeAlumnosFree(){
-		HashSet <Alumno> listadoAlumnosFree=new HashSet<Alumno>();
+
+	public HashSet<Alumno> listadoDeAlumnosFree() {
+		HashSet<Alumno> listadoAlumnosFree = new HashSet<Alumno>();
 		for (Alumno alumno : alumnado) {
-			if(alumno.getPremium().equals(false)) {
-					listadoAlumnosFree.add(alumno);
+			if (alumno.getPremium().equals(false)) {
+				listadoAlumnosFree.add(alumno);
 			}
 		}
 		return listadoAlumnosFree;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 }
