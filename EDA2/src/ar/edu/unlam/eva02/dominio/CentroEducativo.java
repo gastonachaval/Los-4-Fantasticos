@@ -67,6 +67,17 @@ public class CentroEducativo {
 		}
 		return contador;
 	}
+	
+	public HashSet<Alumno> listadoDeAlumnosPremium() {
+		HashSet <Alumno> listadoAlumnosPremium=new HashSet<Alumno>();
+		for (Alumno e : alumnado) {
+			if (e.getPremium().equals(true)) {
+				listadoAlumnosPremium.add(e);
+			}
+		}
+		return listadoAlumnosPremium;
+	}
+	
 
 	public Integer totalDeAlumnosFree() {
 		Integer contador = 0;
